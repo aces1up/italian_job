@@ -6,7 +6,6 @@ class DashboardUiController < ApplicationController
 
   def inspector_menu_item_action_performed()
       InspectorUiController.instance.open
-      InspectorUiController.instance.init_jtree( 'what' )
   end
 
 end

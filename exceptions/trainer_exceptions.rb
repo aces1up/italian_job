@@ -1,0 +1,4 @@
+
+
+class GUIError  < FatalAppError          ; end
+

@@ -58,6 +58,8 @@ begin
   java_import javax.swing.JMenuItem
   java_import java.awt.event.ActionListener
   java_import java.awt.event.FocusListener
+  java_import java.awt.Color
+
   
   $working_directory = 'c:/lwb-trainer/'
   PhantomJSEXE = 'c:/temp/phantomjs.exe'
@@ -71,11 +73,21 @@ begin
   require 'botter'
 
   #our gui Requires
+
+  require 'gui/helpers/monkeybars/monkeybars_helpers'
+
+  require 'gui/helpers/gui_item/value_converter'
+  require 'gui/helpers/gui_item/gui_item_builder'
+  require 'gui/helpers/gui_item/gui_item_class'
+
+
   require 'gui/helpers/action_listener_helper'
   require 'gui/helpers/dialog_helpers'
 
 
   require 'gui/inspector_ui/inspector_ui_controller'
+  require 'gui/action_data_ui/action_data_ui_controller'
+  require 'gui/tag_data_ui/tag_data_ui_controller'
   require 'gui/dashboard_ui/dashboard_ui_controller'
 
 
@@ -83,6 +95,7 @@ begin
   class Tester
 
     include BotFrameWorkModules
+    include MonkeyBarsHelper
 
      def initialize()
         @connection_class = EasyriderConnection
@@ -98,31 +111,26 @@ begin
 
      end
 
+     def test_injector()
+        #inject_monkeybar_methods
+        ele = get_gui_element_handle( :inspector_menu_item )
+        puts ele.obj_info
+     end
+
      def handle()
         current_connection_handle
      end
   end
 
-  tester = Tester.new
-  tester.test
+  #tester = Tester.new
+  #tester.test_injector
 
+  #ActionDataUiController.instance.open
+  ActionDataUiController.instance.open
+  #DashboardUiController.instance
 
-  #DashboardUiController.instance.open
-  InspectorUiController.instance.open
-  InspectorUiController.instance.set_model_var( :conn, tester.handle )
-
-  #Watir::Element::DOM_Elements
-=begin
-  tags = Watir::Element::DOM_Elements
-
-  pool = PoolEach.new
-  result = pool.each( 5, tags, { :init => {}, :method => :merge! } ) do |job_data|
-      puts "got_job_data: #{job_data}"
-      [ { job_data => rand(34343) } , false]
-  end
-
-  puts "done -- result: #{result.inspect}"
-=end
+  #InspectorUiController.instance.open
+  #InspectorUiController.instance.set_model_var( :conn, tester.handle )
 
 
 rescue => e
