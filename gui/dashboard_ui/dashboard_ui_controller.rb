@@ -8,4 +8,8 @@ class DashboardUiController < ApplicationController
       InspectorUiController.instance.open
   end
 
+  def test_data_get_action_performed()
+      puts "got _var: #{$container[:test_var].inspect}"
+  end
+
 end

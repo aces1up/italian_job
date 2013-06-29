@@ -76,9 +76,12 @@ begin
 
   require 'gui/helpers/monkeybars/monkeybars_helpers'
 
-  require 'gui/helpers/gui_item/value_converter'
-  require 'gui/helpers/gui_item/gui_item_builder'
-  require 'gui/helpers/gui_item/gui_item_class'
+  require 'gui/helpers/gui_generator/gui_item/value_converter'
+  require 'gui/helpers/gui_generator/gui_item/gui_item_builder'
+  require 'gui/helpers/gui_generator/gui_item/gui_item_class'
+
+  require 'gui/helpers/gui_generator/gui_container/gui_container_class'
+
 
 
   require 'gui/helpers/action_listener_helper'
@@ -127,7 +130,7 @@ begin
 
   #ActionDataUiController.instance.open
   ActionDataUiController.instance.open
-  #DashboardUiController.instance
+  DashboardUiController.instance.open
 
   #InspectorUiController.instance.open
   #InspectorUiController.instance.set_model_var( :conn, tester.handle )

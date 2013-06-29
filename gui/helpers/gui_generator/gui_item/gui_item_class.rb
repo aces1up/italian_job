@@ -22,6 +22,7 @@ class GUIItem
 
 
     attr_accessor :value
+    attr_reader   :has_rendered
 
     def initialize ( var_args={} )
 
