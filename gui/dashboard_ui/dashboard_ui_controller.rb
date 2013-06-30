@@ -9,6 +9,8 @@ class DashboardUiController < ApplicationController
       model.action_list_combo = ComboBoxHelper.new( {:gui_element => :action_list_combo, :clear => true, :selected => 'GotoPage', :options => trainer_actions} )
   end
 
+  def init_version() ; signal( :do_version ) end
+
   def init_actions_table_listener()
       signal( :init_action_jtable_listener )
   end
@@ -17,6 +19,7 @@ class DashboardUiController < ApplicationController
       InspectorUiController.instance.reboot
       ActionDataUiController.instance.close
       TagDataUiController.instance.close
+      init_version()
 
       model.test_runner             = TestRunner.new
       model.action_table_model      = ActionTableHandler.new

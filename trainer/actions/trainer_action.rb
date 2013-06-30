@@ -100,7 +100,7 @@ class TrainerAction
 
       rescue => err
 
-          #alert_pop_err( err, 'Super Fatal App Error' )
+          alert_pop_err( err, 'Fatal Trainer Action Run Error' )
 
       ensure
           @has_run = true

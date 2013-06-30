@@ -63,6 +63,7 @@ begin
   
   $working_directory = 'c:/lwb-trainer/'
   $display_gui       = true
+  Version            = 'Italian Job 1.0.0'
   PhantomJSEXE = 'c:/temp/phantomjs.exe'
 
   #OUR HARDWARE CLASSES
@@ -105,8 +106,13 @@ begin
   require 'gui/dashboard_ui/dashboard_ui_controller'
 
   #our actual trainer test classes
+
+  #data classes
+  require 'trainer/actions/data/save_var_t_data'
+
   require 'trainer/actions/data/default_t_data'
   require 'trainer/actions/trainer_action'
+  require 'trainer/actions/save_regex_t_action'
   require 'trainer/actions/goto_t_action'
   require 'trainer/actions/verify_string_t_action'
 
