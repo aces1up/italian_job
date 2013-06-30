@@ -21,7 +21,18 @@ class InspectorUiController < ApplicationController
       signal( :do_init_jtree )
   end
 
+  def allowed?()
+      if !model.conn
+          alert_pop("No Connection Currently Initialized...")
+          return false
+      end
+      true
+  end
+
   def refresh_button_action_performed()
+
+      return if !allowed?
+
       Thread.new {
         begin
             init_jtree
@@ -32,6 +43,9 @@ class InspectorUiController < ApplicationController
   end
 
   def show_screenshot_action_performed()
+
+      return if !allowed?
+
       Thread.new {
           filename = "#{ScreenShotDirectory}screenshot-#{rand( 9999999 )}.png"
           model.conn.screenshot( filename )

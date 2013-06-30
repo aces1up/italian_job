@@ -3,13 +3,44 @@ class DashboardUiController < ApplicationController
   set_view 'DashboardUiView'
   set_close_action :exit
 
+  def init_actions_combo()
+      trainer_actions = TrainerAction.subclasses.map{ |klass| klass.to_s.gsub('Trainer','')  }
+      ComboBoxHelper.new( {:gui_element => :action_list_combo,:options => trainer_actions} )
+  end
+
+  def load()
+      model.test_runner             = TestRunner.new
+      model.action_table_model      = ActionTableHandler.new
+      init_actions_combo()
+  end
+
+  def teardown()
+      model.action_table_model.clear_model if model.action_table_model
+      model.test_runner = nil
+  end
+
+  def reboot()
+      #hard reboot the trainer if something breaks big time.
+      teardown()
+      load()
+  end
+
+  def close()
+      teardown()
+      super()
+  end
 
   def inspector_menu_item_action_performed()
       InspectorUiController.instance.open
   end
 
-  def test_data_get_action_performed()
-      puts "got _var: #{$container[:test_var].inspect}"
+  def reboot_menu_item_action_performed()
+      reboot
   end
+
+  def run_test_button_action_performed()
+      model.test_runner.start_test
+  end
+
 
 end

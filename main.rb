@@ -72,6 +72,13 @@ begin
 
   require 'botter'
 
+  #utility
+  require 'util/trainer_utility'
+
+
+  #our trainer exceptions
+  require 'exceptions/trainer_exceptions'
+
   #our gui Requires
 
   require 'gui/helpers/monkeybars/monkeybars_helpers'
@@ -81,17 +88,26 @@ begin
   require 'gui/helpers/gui_generator/gui_item/gui_item_class'
 
   require 'gui/helpers/gui_generator/gui_container/gui_container_class'
-
-
-
   require 'gui/helpers/action_listener_helper'
   require 'gui/helpers/dialog_helpers'
+  require 'gui/helpers/combobox_helper'
 
+  require 'gui/helpers/table_helpers/jtable_getvalue_helper'
+
+
+  require 'gui/dashboard_ui/action_table/action_table_model'
 
   require 'gui/inspector_ui/inspector_ui_controller'
   require 'gui/action_data_ui/action_data_ui_controller'
   require 'gui/tag_data_ui/tag_data_ui_controller'
   require 'gui/dashboard_ui/dashboard_ui_controller'
+
+  #our actual trainer test classes
+  require 'trainer/actions/data/default_t_data'
+  require 'trainer/actions/trainer_action'
+  require 'trainer/actions/goto_t_action'
+
+  require 'trainer/test_runner'
 
 
 
@@ -125,12 +141,13 @@ begin
      end
   end
 
-  #tester = Tester.new
-  #tester.test_injector
 
   #ActionDataUiController.instance.open
-  ActionDataUiController.instance.open
+  #ActionDataUiController.instance.open
   DashboardUiController.instance.open
+  #trainer_obj = GotoPageTrainer.new
+  #data = trainer_obj.data
+  #puts data.inspect
 
   #InspectorUiController.instance.open
   #InspectorUiController.instance.set_model_var( :conn, tester.handle )

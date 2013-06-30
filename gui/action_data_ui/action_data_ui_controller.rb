@@ -34,16 +34,5 @@ class ActionDataUiController < ApplicationController
       
   end
 
-  def test_render_button_action_performed()
-      @item.render
-      #@item.set_value( 4 )
-  end
-
-  def test_get_button_action_performed()
-      #val = @item.get_value
-      #puts "got val: #{val.inspect}"
-      puts "got _var: #{$container[:test_var].inspect}"
-
-  end
 
 end

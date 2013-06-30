@@ -13,7 +13,6 @@ class GUIContainer
         end
     end
 
-
     def add( element_args )
         @gui_elements.merge!( element_args )
         init_handlers
