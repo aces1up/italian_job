@@ -32,9 +32,10 @@ public class Dash extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        insert_action_button = new javax.swing.JButton();
+        delete_action_button = new javax.swing.JButton();
         action_list_combo = new javax.swing.JComboBox();
         add_action_button = new javax.swing.JButton();
+        insert_action_button = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         connection_type_combo = new javax.swing.JComboBox();
@@ -51,15 +52,15 @@ public class Dash extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         inspector_menu_item = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        tool_menu = new javax.swing.JMenu();
         reboot_menu_item = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
 
-        insert_action_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        insert_action_button.setText("Insert Action");
+        delete_action_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        delete_action_button.setText("Delete Action");
 
         action_list_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -71,6 +72,9 @@ public class Dash extends javax.swing.JFrame {
             }
         });
 
+        insert_action_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        insert_action_button.setText("Insert Action");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -80,9 +84,11 @@ public class Dash extends javax.swing.JFrame {
                 .addComponent(action_list_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(add_action_button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addComponent(insert_action_button)
-                .addGap(99, 99, 99))
+                .addGap(18, 18, 18)
+                .addComponent(delete_action_button)
+                .addGap(72, 72, 72))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,8 +96,9 @@ public class Dash extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(action_list_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(insert_action_button)
-                    .addComponent(add_action_button))
+                    .addComponent(add_action_button)
+                    .addComponent(delete_action_button)
+                    .addComponent(insert_action_button))
                 .addContainerGap())
         );
 
@@ -123,7 +130,7 @@ public class Dash extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(use_proxies_checkbox)
-                            .addComponent(connection_type_combo, 0, 127, Short.MAX_VALUE))))
+                            .addComponent(connection_type_combo, 0, 95, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -162,7 +169,7 @@ public class Dash extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                 .addComponent(run_test_button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(stop_test_button)
@@ -204,12 +211,12 @@ public class Dash extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu3.setText("Tools");
+        tool_menu.setText("Tools");
 
         reboot_menu_item.setText("Reboot Trainer");
-        jMenu3.add(reboot_menu_item);
+        tool_menu.add(reboot_menu_item);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(tool_menu);
 
         setJMenuBar(jMenuBar1);
 
@@ -222,11 +229,11 @@ public class Dash extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 838, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 911, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -267,6 +274,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTable actions_table;
     private javax.swing.JButton add_action_button;
     private javax.swing.JComboBox connection_type_combo;
+    private javax.swing.JButton delete_action_button;
     private javax.swing.JButton insert_action_button;
     private javax.swing.JMenuItem inspector_menu_item;
     private javax.swing.JComboBox jComboBox1;
@@ -274,7 +282,6 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -284,6 +291,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JMenuItem reboot_menu_item;
     private javax.swing.JButton run_test_button;
     private javax.swing.JButton stop_test_button;
+    private javax.swing.JMenu tool_menu;
     private javax.swing.JCheckBox use_proxies_checkbox;
     // End of variables declaration//GEN-END:variables
 

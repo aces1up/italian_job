@@ -15,12 +15,27 @@ class TestRunner
 	def initialize()
 
 		  @trainer_actions = []     #<--- all our trainer action objects
+      @selected_index  = nil
+
       @test_thread     = nil    #<--- the test thread that last executed this test.
 
 	end
 
   def start_test()
       @test_thread = Thread.new { run_test }
+  end
+  
+  def selected_obj()
+      return nil if @trainer_actions.empty?
+      @trainer_actions[ @selected_index ]
+  end
+
+  def set_selected( index )
+      @selected_index = index
+  end
+
+  def add( action_klass )
+      @trainer_actions << action_klass.new
   end
 
   def run_test()

@@ -24,7 +24,23 @@ class TrainerAction
 		@data         =   GUIContainer.new( self.class.trainer_data )    #<---- data used to init our action object
 		@action_obj   =   nil                                            #<---- the action object we are currently running
 
+    update()
 	end
+
+  #gui handling stuff
+
+  def update()
+      DashboardUiController.instance.get_model_var( :action_table_model ).update
+  end
+
+  def render_trainer_data()
+      begin
+          ActionDataUiController.instance.open
+          @data.render
+      rescue => err
+          alert_pop_err( err, "Render Data Error: " )
+      end
+  end
 
   def reset()
       #clear out this action to get it ready to run again.

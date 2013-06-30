@@ -1,17 +1,23 @@
 class DashboardUiController < ApplicationController
+
   set_model 'DashboardUiModel'
   set_view 'DashboardUiView'
   set_close_action :exit
 
   def init_actions_combo()
       trainer_actions = TrainerAction.subclasses.map{ |klass| klass.to_s.gsub('Trainer','')  }
-      ComboBoxHelper.new( {:gui_element => :action_list_combo,:options => trainer_actions} )
+      model.action_list_combo = ComboBoxHelper.new( {:gui_element => :action_list_combo,:options => trainer_actions} )
+  end
+
+  def init_actions_table_listener()
+      signal( :init_action_jtable_listener )
   end
 
   def load()
       model.test_runner             = TestRunner.new
       model.action_table_model      = ActionTableHandler.new
       init_actions_combo()
+      init_actions_table_listener()
   end
 
   def teardown()
@@ -35,7 +41,12 @@ class DashboardUiController < ApplicationController
   end
 
   def reboot_menu_item_action_performed()
-      reboot
+      reboot()
+  end
+
+  def add_action_button_action_performed()
+      action_klass = get_constant( "#{model.action_list_combo.get_selected}Trainer" )
+      model.test_runner.add( action_klass )
   end
 
   def run_test_button_action_performed()

@@ -22,7 +22,7 @@ class GUIItem
 
 
     attr_accessor :value
-    attr_reader   :has_rendered
+    attr_reader   :has_rendered, :root_pan
 
     def initialize ( var_args={} )
 
@@ -117,10 +117,11 @@ class GUIItem
 
     def init_root_panel()
         return if !@root_pan.is_a?( Symbol )
-        puts "getting root panel: #{@root_pan.inspect}"
         found = get_gui_element_from_handle( @root_pan )
         raise GUIError, "Unable to Get Root Panel Swing Element for : #{@root_pan.inspect}" if !found
         @root_pan = found
+
+        puts "init root panel: #{@root_pan.obj_info}"
     end
 
     def init_gui_element_with_handle()
@@ -145,8 +146,7 @@ class GUIItem
         #actually add the element we created to the appropriate panel here
         # check to see if this gui_element is enclosed in another element.
         # enclose in right now is used for the textarea scroll panels
-        @enclose_in ? @element_panel.add( @enclose_in ) : @element_panel.add( @gui_element )
-                        
+        @enclose_in ? @element_panel.add( @enclose_in ) : @element_panel.add( @gui_element )                        
     end
 
     def create_gui_element()
@@ -211,14 +211,16 @@ class GUIItem
     end
     
     def render_gui_panel()
+        return if @root_pan.nil?
         puts "rending GUI Panel Now -- [ Root Panel: #{@root_pan.obj_info} ] -- [ Element Panel: #{@element_panel.obj_info} ]"
+
         @root_pan.add( @element_panel )
         @root_pan.revalidate
     end
 
     def render()
         #sets the current value stored on the gui element
-        render_gui_panel if !@has_rendered
+        render_gui_panel 
         set_value()
         @has_rendered = true
     end

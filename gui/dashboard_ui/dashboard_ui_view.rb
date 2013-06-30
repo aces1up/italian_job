@@ -6,5 +6,10 @@ class DashboardUiView < ApplicationView
      return self.get_field_value( transfer[:gui_element] )
   end
 
+  define_signal :name => :init_action_jtable_listener, :handler => :init_action_jtable_listener
+  def init_action_jtable_listener( model, transfer )
+      actions_table.addMouseListener( ActionJtableMouseListener.new )
+  end
+
 
 end

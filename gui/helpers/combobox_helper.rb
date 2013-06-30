@@ -26,9 +26,13 @@
             init_combobox()
         end
 
+        def get_selected()
+            @gui_element.getSelectedItem
+        end
+
         def get_selection_lambda()
             lambda do
-                @selected = @gui_element.getSelectedItem
+                @selected = get_selected
                 @on_select_lambda.call( @selected ) if @on_select_lambda
             end
         end

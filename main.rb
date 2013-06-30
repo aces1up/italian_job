@@ -94,7 +94,7 @@ begin
 
   require 'gui/helpers/table_helpers/jtable_getvalue_helper'
 
-
+  require 'gui/dashboard_ui/action_table/action_table_listener'
   require 'gui/dashboard_ui/action_table/action_table_model'
 
   require 'gui/inspector_ui/inspector_ui_controller'
