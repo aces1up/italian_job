@@ -45,6 +45,9 @@ class TestRunner
       init_vars()
       begin
           puts "running test: #{Thread.current.__id__}"
+          @trainer_actions.each do |action|
+              action.run
+          end
       rescue => err
           alert_pop_err(err, "Run Test Error: ")
       end

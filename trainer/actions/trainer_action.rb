@@ -19,7 +19,7 @@ class TrainerAction
     #our log / info about this action
     @info         =   ""
 		@log          =   ""                                             #<---- log of everything that happens with this action
-    @action       =   self.class.to_s
+    @action       =   self.class.to_s.gsub('Trainer','')
 
 		@data         =   GUIContainer.new( self.class.trainer_data )    #<---- data used to init our action object
 		@action_obj   =   nil                                            #<---- the action object we are currently running
@@ -42,6 +42,10 @@ class TrainerAction
       end
   end
 
+  def save_trainer_data()
+      @data.save
+  end
+
   def reset()
       #clear out this action to get it ready to run again.
       @log  = ""
@@ -50,7 +54,7 @@ class TrainerAction
 
   def run()
       #1.  initialize normal trainer object with our @data
-      #2.
+      puts "running #{self.obj_info} -- #{@data.all_vars.inspect}"
   end
 
 end

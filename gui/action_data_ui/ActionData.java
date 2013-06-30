@@ -35,6 +35,7 @@ public class ActionData extends javax.swing.JFrame {
         save_trainer_data_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Trainer Data");
 
         action_data_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
 

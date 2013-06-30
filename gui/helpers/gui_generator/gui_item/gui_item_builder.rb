@@ -21,7 +21,6 @@ module GUIItemBuilder
          if @auto_resize
               case @render_klass
                   when :textarea
-                      puts "resizing text area"
                       @var_args[:pan_y] = @var_args[:ele_args].first * 30
               end
          end
@@ -41,7 +40,7 @@ module GUIItemBuilder
 
         #set the border here
         @element_panel.setBorder( javax.swing.BorderFactory.createLineBorder( Color.red ) )
-        puts "created element panel: #{@element_panel.obj_info}"
+        #puts "created element panel: #{@element_panel.obj_info}"
     end
 
 
@@ -49,7 +48,7 @@ module GUIItemBuilder
 
         swing_class = render_class_to_swing( @render_klass )
 
-        puts "creating gui element using swing class: #{swing_class.inspect}"
+        #puts "creating gui element using swing class: #{swing_class.inspect}"
 
         case swing_class.to_s
 

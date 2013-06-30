@@ -28,7 +28,6 @@ class ActionJtableMouseListener < MouseAdapter
         if (SwingUtilities.isLeftMouseButton(e))
             Thread.new { 
                 selected_action = test_runner_obj.selected_obj
-                puts "rendering selected action: #{selected_action.obj_info}"
                 selected_action.render_trainer_data if selected_action
              }
         end

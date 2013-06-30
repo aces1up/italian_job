@@ -80,7 +80,7 @@ class GUIItem
 
         raise GUIError, "Cannot Built Gui Item for #{@render_klass.inspect} -- No Root Panel Specified!" if !@gui_element.is_a?( Symbol ) and !@root_pan
 
-        init_element()
+        #init_element()
     end
 
     def render_class_to_swing( render_klass )
@@ -115,13 +115,11 @@ class GUIItem
         end
     end
 
-    def init_root_panel()
-        return if !@root_pan.is_a?( Symbol )
+    def get_root_panel()
+        return nil if !@root_pan.is_a?( Symbol )
         found = get_gui_element_from_handle( @root_pan )
         raise GUIError, "Unable to Get Root Panel Swing Element for : #{@root_pan.inspect}" if !found
-        @root_pan = found
-
-        puts "init root panel: #{@root_pan.obj_info}"
+        found
     end
 
     def init_gui_element_with_handle()
@@ -135,8 +133,6 @@ class GUIItem
       
         @is_generated = true
 
-        init_root_panel()
-   
         add_gui_element()
         create_element_panel()   #<--- create the element panel this gui_element is enclosed in
         add_user_string()
@@ -206,20 +202,22 @@ class GUIItem
 
         send( convert_method ) if convert_method
 
-        puts "sending set value to element: #{@gui_element.obj_info} --  #{@value.inspect}"
+        #puts "sending set value to element: #{@gui_element.obj_info} --  #{@value.inspect}"
         @gui_element.send( set_method, @value )
     end
     
     def render_gui_panel()
-        return if @root_pan.nil?
-        puts "rending GUI Panel Now -- [ Root Panel: #{@root_pan.obj_info} ] -- [ Element Panel: #{@element_panel.obj_info} ]"
+        raise GUIError, "Unable to render GUI Panel on #{self.obj_info} -- Could not determine Root Panel Element " if get_root_panel.nil?
+        #puts "rending GUI Panel Now -- [ Root Panel: #{@root_pan.obj_info} ] -- [ Element Panel: #{@element_panel.obj_info} ]"
 
-        @root_pan.add( @element_panel )
-        @root_pan.revalidate
+        puts "rendering element root panel: #{get_root_panel.obj_info}"
+        get_root_panel.add( @element_panel )
+        get_root_panel.revalidate
     end
 
     def render()
         #sets the current value stored on the gui element
+        init_element()
         render_gui_panel 
         set_value()
         @has_rendered = true
