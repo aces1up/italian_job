@@ -27,6 +27,11 @@ class TestRunner
       @test_thread = Thread.new { run_test }
   end
 
+  def reset_all()
+      #resets all actions currently loaded
+      @trainer_actions.each do |trainer_action| trainer_action.reset end
+  end
+
   def execute_test?()
       return false if @trainer_actions.empty?
       true
@@ -47,6 +52,7 @@ class TestRunner
 
   def init_test()
       init_vars()
+      reset_all()
       setup_connection()
   end
 

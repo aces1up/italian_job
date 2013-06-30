@@ -8,7 +8,7 @@ class TrainerAction
   extend DefaultTrainerData
   include BotFrameWorkModules
 
-  attr_reader :has_run, :status, :breakpoint, :info, :action, :data
+  attr_reader :has_run, :status, :breakpoint, :output, :action, :data
 
 	def initialize()
 
@@ -18,7 +18,7 @@ class TrainerAction
     @stop         =   false #<---- set to true when we get a stop signal
 
     #our log / info about this action
-    @info         =   ""
+    @output       =   ""
 		@log          =   ""                                             #<---- log of everything that happens with this action
     @action       =   self.class.to_s.gsub('Trainer','')
 
@@ -34,8 +34,18 @@ class TrainerAction
       DashboardUiController.instance.get_model_var( :action_table_model ).update
   end
 
+  def update_msg( msg_output, log_level, thread )
+      @output = msg_output
+      @log   += "#{msg_output}\n"
+      update()
+  end
+
   def set_status( status )
       @status = status ; update
+  end
+
+  def set_status_from_enviornment()
+      set_status( self[:status] )
   end
 
   def render_trainer_data()
@@ -54,8 +64,10 @@ class TrainerAction
 
   def reset()
       #clear out this action to get it ready to run again.
-      @log  = ""
-      @stop = false
+      @log      =  ""
+      @stop     =  false
+      @output   =  ""
+      @has_run  =  false
       set_status( :idle )
   end
 
@@ -65,27 +77,34 @@ class TrainerAction
 
   def run()
       #1.  initialize normal trainer object with our @data
-      set_status( :running )
 
       begin
+           set_status( :running )
+           set_log_handler( self )
+           
            init_action_obj()
            @action_obj.run
 
+           info("#{@action} Finished Successfully! ")
            set_status( :success)
 
       rescue GeneralAppException => err
-          alert_pop_err( err, 'General App Error' )
+
+          err.report
+          set_status_from_enviornment()
 
       rescue FatalAppError => err
 
-          alert_pop_err( err, 'Fatal App Error' )
+          err.report
+          set_status_from_enviornment()
 
       rescue => err
 
-          alert_pop_err( err, 'Super Fatal App Error' )
+          #alert_pop_err( err, 'Super Fatal App Error' )
 
       ensure
           @has_run = true
+          clear_log_handler()
           update()
       end
 

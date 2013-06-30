@@ -8,11 +8,11 @@ class ActionTableHandler < javax.swing.table.DefaultTableModel
   def initialize()
 
     @columns ||= {
-          :action       => :shown,
-          :info         => :shown,
-          :status       => :shown,
-          :has_run      => :shown,
-          :breakpoint   => :shown
+          :action         => :shown,
+          :output         => :shown,
+          :status         => :shown,
+          :has_run        => :shown,
+          :breakpoint     => :shown
     }
 
     @gui_element = DashboardUiController.instance.get_gui_handle( :actions_table )
@@ -21,7 +21,7 @@ class ActionTableHandler < javax.swing.table.DefaultTableModel
 
     init_columns()
     init_model()
-    #init_renderer()
+    init_renderer()
     update()
   end
 
@@ -30,7 +30,7 @@ class ActionTableHandler < javax.swing.table.DefaultTableModel
   end
 
   def init_renderer()
-      @renderer = ProxyTableRenderer.new( @gui_element, self )
+      @renderer = ActionTableRenderer.new( @gui_element, self )
   end
 
   def clear_model()

@@ -14,6 +14,11 @@ class InspectorUiController < ApplicationController
 
   include BrowserWindow
 
+  def reboot()
+      model.conn = nil
+      close
+  end
+
   def init_jtree()
       #re_initializes the Jtree with the connection handle
       #in the model

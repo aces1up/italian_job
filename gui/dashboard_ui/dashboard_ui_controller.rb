@@ -14,6 +14,7 @@ class DashboardUiController < ApplicationController
   end
 
   def load()
+      InspectorUiController.instance.reboot
       ActionDataUiController.instance.close
       TagDataUiController.instance.close
 

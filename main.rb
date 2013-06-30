@@ -62,6 +62,7 @@ begin
 
   
   $working_directory = 'c:/lwb-trainer/'
+  $display_gui       = true
   PhantomJSEXE = 'c:/temp/phantomjs.exe'
 
   #OUR HARDWARE CLASSES
@@ -94,6 +95,7 @@ begin
 
   require 'gui/helpers/table_helpers/jtable_getvalue_helper'
 
+  require 'gui/dashboard_ui/action_table/action_table_renderer'
   require 'gui/dashboard_ui/action_table/action_table_listener'
   require 'gui/dashboard_ui/action_table/action_table_model'
 
@@ -113,47 +115,8 @@ begin
   require 'trainer/test_runner'
 
 
-
-  class Tester
-
-    include BotFrameWorkModules
-    include MonkeyBarsHelper
-
-     def initialize()
-        @connection_class = EasyriderConnection
-     end
-
-     def test()
-        init_vars
-        get('http://www.weebly.com/')
-
-        #ele = find(:input, :id, '-name')
-        #puts ele.inspect
-        #ele.element.element_info
-
-     end
-
-     def test_injector()
-        #inject_monkeybar_methods
-        ele = get_gui_element_handle( :inspector_menu_item )
-        puts ele.obj_info
-     end
-
-     def handle()
-        current_connection_handle
-     end
-  end
-
-
-  #ActionDataUiController.instance.open
-  #ActionDataUiController.instance.open
   DashboardUiController.instance.open
-  #trainer_obj = GotoPageTrainer.new
-  #data = trainer_obj.data
-  #puts data.inspect
 
-  #InspectorUiController.instance.open
-  #InspectorUiController.instance.set_model_var( :conn, tester.handle )
 
 
 rescue => e
