@@ -7,8 +7,8 @@ class GUIContainer
     def initialize( gui_elements={} )
 
         @gui_elements = gui_elements
-
         init_handlers
+
     end
 
     def get_root_panel()
@@ -38,7 +38,6 @@ class GUIContainer
 
     def clear_root_pan()
         root_pan = get_root_panel
-        puts "rendering container root panel: #{root_pan.obj_info}"
         root_pan.removeAll()
         root_pan.updateUI()
     end

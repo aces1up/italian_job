@@ -106,7 +106,10 @@ begin
   require 'trainer/actions/data/default_t_data'
   require 'trainer/actions/trainer_action'
   require 'trainer/actions/goto_t_action'
+  require 'trainer/actions/verify_string_t_action'
 
+
+  require 'trainer/connection_initializer'
   require 'trainer/test_runner'
 
 

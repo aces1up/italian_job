@@ -33,6 +33,7 @@ public class ActionData extends javax.swing.JFrame {
 
         action_data_panel = new javax.swing.JPanel();
         save_trainer_data_button = new javax.swing.JButton();
+        action_class_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trainer Data");
@@ -42,6 +43,10 @@ public class ActionData extends javax.swing.JFrame {
         save_trainer_data_button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         save_trainer_data_button.setText("Save Trainer Data");
 
+        action_class_label.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        action_class_label.setForeground(new java.awt.Color(0, 0, 204));
+        action_class_label.setText("Action Class");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -50,16 +55,19 @@ public class ActionData extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(action_data_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(save_trainer_data_button, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(save_trainer_data_button, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(action_class_label))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addContainerGap()
+                .addComponent(action_class_label)
+                .addGap(26, 26, 26)
                 .addComponent(save_trainer_data_button)
                 .addGap(18, 18, 18)
-                .addComponent(action_data_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addComponent(action_data_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -78,6 +86,7 @@ public class ActionData extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel action_class_label;
     private javax.swing.JPanel action_data_panel;
     private javax.swing.JButton save_trainer_data_button;
     // End of variables declaration//GEN-END:variables

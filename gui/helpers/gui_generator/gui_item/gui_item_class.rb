@@ -210,7 +210,6 @@ class GUIItem
         raise GUIError, "Unable to render GUI Panel on #{self.obj_info} -- Could not determine Root Panel Element " if get_root_panel.nil?
         #puts "rending GUI Panel Now -- [ Root Panel: #{@root_pan.obj_info} ] -- [ Element Panel: #{@element_panel.obj_info} ]"
 
-        puts "rendering element root panel: #{get_root_panel.obj_info}"
         get_root_panel.add( @element_panel )
         get_root_panel.revalidate
     end

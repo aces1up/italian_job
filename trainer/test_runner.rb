@@ -3,6 +3,8 @@
 class TestRunner
 
   include BotFrameWorkModules
+  include ConnectionInitializer
+  include MonkeyBarsHelper
 
 	# this should run in its own thread just like
 	# a normal function would
@@ -24,7 +26,12 @@ class TestRunner
   def start_test()
       @test_thread = Thread.new { run_test }
   end
-  
+
+  def execute_test?()
+      return false if @trainer_actions.empty?
+      true
+  end
+
   def selected_obj()
       return nil if @trainer_actions.empty?
       @trainer_actions[ @selected_index ]
@@ -38,16 +45,25 @@ class TestRunner
       @trainer_actions << action_klass.new
   end
 
+  def init_test()
+      init_vars()
+      setup_connection()
+  end
+
   def run_test()
       #create a new thread and record it for later purposes of retrieving
       #the thread vars from it.
-
-      init_vars()
+      
       begin
-          puts "running test: #{Thread.current.__id__}"
-          @trainer_actions.each do |action|
-              action.run
+
+          return if !execute_test?
+        
+          init_test()
+
+          @trainer_actions.each do | trainer_action |
+              trainer_action.run
           end
+
       rescue => err
           alert_pop_err(err, "Run Test Error: ")
       end

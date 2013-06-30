@@ -6,7 +6,7 @@ class DashboardUiController < ApplicationController
 
   def init_actions_combo()
       trainer_actions = TrainerAction.subclasses.map{ |klass| klass.to_s.gsub('Trainer','')  }
-      model.action_list_combo = ComboBoxHelper.new( {:gui_element => :action_list_combo, :clear => true, :options => trainer_actions} )
+      model.action_list_combo = ComboBoxHelper.new( {:gui_element => :action_list_combo, :clear => true, :selected => 'GotoPage', :options => trainer_actions} )
   end
 
   def init_actions_table_listener()
@@ -14,6 +14,9 @@ class DashboardUiController < ApplicationController
   end
 
   def load()
+      ActionDataUiController.instance.close
+      TagDataUiController.instance.close
+
       model.test_runner             = TestRunner.new
       model.action_table_model      = ActionTableHandler.new
       init_actions_combo()

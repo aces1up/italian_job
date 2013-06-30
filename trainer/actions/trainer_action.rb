@@ -6,6 +6,7 @@ class TrainerAction
 	# and running of the action obj attached to this trainer object
 
   extend DefaultTrainerData
+  include BotFrameWorkModules
 
   attr_reader :has_run, :status, :breakpoint, :info, :action, :data
 
@@ -33,9 +34,14 @@ class TrainerAction
       DashboardUiController.instance.get_model_var( :action_table_model ).update
   end
 
+  def set_status( status )
+      @status = status ; update
+  end
+
   def render_trainer_data()
       begin
           ActionDataUiController.instance.open
+          ActionDataUiController.instance.set_action_label
           @data.render
       rescue => err
           alert_pop_err( err, "Render Data Error: " )
@@ -50,11 +56,39 @@ class TrainerAction
       #clear out this action to get it ready to run again.
       @log  = ""
       @stop = false
+      set_status( :idle )
+  end
+
+  def init_action_obj()
+      @action_obj = get_constant( @action ).new( @data.all_vars )
   end
 
   def run()
       #1.  initialize normal trainer object with our @data
-      puts "running #{self.obj_info} -- #{@data.all_vars.inspect}"
+      set_status( :running )
+
+      begin
+           init_action_obj()
+           @action_obj.run
+
+           set_status( :success)
+
+      rescue GeneralAppException => err
+          alert_pop_err( err, 'General App Error' )
+
+      rescue FatalAppError => err
+
+          alert_pop_err( err, 'Fatal App Error' )
+
+      rescue => err
+
+          alert_pop_err( err, 'Super Fatal App Error' )
+
+      ensure
+          @has_run = true
+          update()
+      end
+
   end
 
 end
