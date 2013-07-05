@@ -94,7 +94,10 @@ begin
   require 'gui/helpers/dialog_helpers'
   require 'gui/helpers/combobox_helper'
 
+  #jtable helpers
   require 'gui/helpers/table_helpers/jtable_getvalue_helper'
+  #jtree_helpers
+  require 'gui/helpers/jtree_helpers/jtree_render_hash_helper/jtree_hash_default_node'
 
   require 'gui/dashboard_ui/action_table/action_table_renderer'
   require 'gui/dashboard_ui/action_table/action_table_listener'
@@ -104,6 +107,13 @@ begin
   require 'gui/action_data_ui/action_data_ui_controller'
   require 'gui/tag_data_ui/tag_data_ui_controller'
   require 'gui/dashboard_ui/dashboard_ui_controller'
+
+  #our info_ui Requires
+  require 'gui/info_ui/info_ui_controller'
+  require 'gui/info_ui/var_jtree/var_jtree_container_node'
+  require 'gui/info_ui/var_jtree/var_jtree_variable_node'
+  require 'gui/info_ui/var_jtree/var_jtree_root_node'
+
 
   #our actual trainer test classes
 

@@ -40,12 +40,12 @@ class TrainerAction
       update()
   end
 
-  def set_status( status )
+  def set_action_status( status )
       @status = status ; update
   end
 
   def set_status_from_enviornment()
-      set_status( self[:status] )
+      set_action_status( self[:status] )
   end
 
   def render_trainer_data()
@@ -68,7 +68,7 @@ class TrainerAction
       @stop     =  false
       @output   =  ""
       @has_run  =  false
-      set_status( :idle )
+      set_action_status( :idle )
   end
 
   def init_action_obj()
@@ -79,14 +79,14 @@ class TrainerAction
       #1.  initialize normal trainer object with our @data
 
       begin
-           set_status( :running )
+           set_action_status( :running )
            set_log_handler( self )
            
            init_action_obj()
            @action_obj.run
 
            info("#{@action} Finished Successfully! ")
-           set_status( :success)
+           set_action_status( :success )
 
       rescue GeneralAppException => err
 

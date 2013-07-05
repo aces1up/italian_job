@@ -17,6 +17,7 @@ class DashboardUiController < ApplicationController
 
   def load()
       InspectorUiController.instance.reboot
+      InfoUiController.instance.close
       ActionDataUiController.instance.close
       TagDataUiController.instance.close
       init_version()
@@ -24,7 +25,14 @@ class DashboardUiController < ApplicationController
       model.test_runner             = TestRunner.new
       model.action_table_model      = ActionTableHandler.new
       init_actions_combo()
+
+      load_once()
+  end
+
+  def load_once()
+      return if @loaded
       init_actions_table_listener()
+      @loaded = true
   end
 
   def teardown()
@@ -45,6 +53,10 @@ class DashboardUiController < ApplicationController
 
   def inspector_menu_item_action_performed()
       InspectorUiController.instance.open
+  end
+
+  def show_info_window_menu_item_action_performed()
+      InfoUiController.instance.open
   end
 
   def reboot_menu_item_action_performed()

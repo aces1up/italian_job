@@ -54,6 +54,7 @@ public class Dash extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         inspector_menu_item = new javax.swing.JMenuItem();
         tool_menu = new javax.swing.JMenu();
+        show_info_window_menu_item = new javax.swing.JMenuItem();
         reboot_menu_item = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -219,6 +220,9 @@ public class Dash extends javax.swing.JFrame {
 
         tool_menu.setText("Tools");
 
+        show_info_window_menu_item.setText("Trainer Info Window");
+        tool_menu.add(show_info_window_menu_item);
+
         reboot_menu_item.setText("Reboot Trainer");
         tool_menu.add(reboot_menu_item);
 
@@ -300,6 +304,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenuItem reboot_menu_item;
     private javax.swing.JButton run_test_button;
+    private javax.swing.JMenuItem show_info_window_menu_item;
     private javax.swing.JButton stop_test_button;
     private javax.swing.JMenu tool_menu;
     private javax.swing.JCheckBox use_proxies_checkbox;

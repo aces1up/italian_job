@@ -12,7 +12,7 @@ class TestRunner
 	# this is used to init and run the test suite
 	# with all the currently loaded trainer actions
 
-  attr_reader :trainer_actions
+  attr_reader :trainer_actions, :test_thread
 
 	def initialize()
 
@@ -67,7 +67,7 @@ class TestRunner
           init_test()
 
           @trainer_actions.each do | trainer_action |
-              trainer_action.run
+              trainer_action.run()
           end
 
       rescue => err

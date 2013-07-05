@@ -21,6 +21,11 @@
             <Property name="text" type="java.lang.String" value="Tools"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="show_info_window_menu_item">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Trainer Info Window"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="reboot_menu_item">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reboot Trainer"/>
