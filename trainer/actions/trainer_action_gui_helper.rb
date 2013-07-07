@@ -33,6 +33,9 @@ module TrainerActionGUIHelper
 end
 
 class ActionGUIDataHelper < GUIContainer
+
+    include ExportToLoadData
+
     #assists with handling tag args and data
     #from the tag options window
 
@@ -41,9 +44,42 @@ class ActionGUIDataHelper < GUIContainer
         # format for :tag_data
         #   :tag => tag_args => {}
         return if !@gui_elements[var_name]
-        puts "importing tag data for var_name: #{var_name.inspect} --> #{data.inspect}"
         @gui_elements[var_name][:tag_data] ||= {}
         @gui_elements[var_name][:tag_data].merge! data
     end
 
+    def value_has_tags?( val )
+        val =~ /~~(.+?)~~/
+        !$1.nil?
+    end
+
+    def all_vars()
+
+        vars = {}
+
+        @gui_elements.each do |var_name, var_args|
+
+            value = case
+
+                when var_args[:value].nil? ; nil
+
+                when ( var_args.has_key?( :tag_data ) and value_has_tags?( var_args[:value] ) )
+
+                 {
+                    :value     =>  var_args[:value],
+                    :tag_data  =>  var_args[:tag_data]
+                 }
+                
+            else
+                 var_args[:value]
+            end
+
+            vars[ var_name ] = value
+
+        end
+
+        deep_copy ( vars )
+
+    end
+    
 end

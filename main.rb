@@ -119,6 +119,7 @@ begin
   require 'gui/tag_data_ui/tag_data_ui_controller'
   require 'gui/tag_data_ui/tag_handlers/default_tag_handler'
   require 'gui/tag_data_ui/tag_handlers/captcha_tag_handler'
+  require 'gui/tag_data_ui/tag_handlers/rand_file_line_tag_handler'
 
 
 
@@ -138,6 +139,7 @@ begin
   require 'trainer/actions/data/element_t_data'
 
   require 'trainer/actions/data/default_t_data'
+  require 'trainer/actions/export_to_load_data'
   require 'trainer/actions/trainer_action_gui_helper'
   require 'trainer/actions/trainer_action'
   require 'trainer/actions/data/click_element_t_data'

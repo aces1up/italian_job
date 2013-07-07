@@ -46,6 +46,16 @@ class TagDataUiModel
     def action_data_container()
         TagDataUiController.instance.action_data_container
     end
+    
+    def selected_tag_to_s()
+        "~~#{@tag_selected.to_s}~~"
+    end
+
+    def append_tag()
+        #this will append the tag to the currently selected
+        #action_data focused field
+        action_data_container.get_focused_handler.append_value( selected_tag_to_s )
+    end
 
     def export_data()
         { @tag_selected => @tag_data.all_vars }

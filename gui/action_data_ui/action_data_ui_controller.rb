@@ -9,7 +9,6 @@ class ActionDataUiController < ApplicationController
   end
 
   def close()
-      puts "clearing focus data"
       test_runner_obj.selected_obj.data.clear_focused if test_runner_obj
       super()
   end
@@ -32,5 +31,6 @@ class ActionDataUiController < ApplicationController
       selected_action = test_runner_obj.selected_obj
       selected_action.save_trainer_data if selected_action
       close
+      TagDataUiController.instance.close
   end
 end

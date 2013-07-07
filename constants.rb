@@ -17,5 +17,5 @@ TagList = [
     :day_index, :year_index, :month_index, :age, 
     :bio_summary,     
     #file handling
-    :rand_file_line
+    :random_line_from_file
 ]

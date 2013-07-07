@@ -164,13 +164,19 @@ class GUIItem
         val == @var_args[:nil_value]
     end
     
-    def get_value()
+    def get_value( run_converter=true )
         #gets the value from our gui element
         #set @value with it and returns @value
 
         swing_klass    = render_class_to_swing( @render_klass )
         get_method     = GetSetMap[ swing_klass ][ :get_method ]
-        convert_method = GetSetMap[ swing_klass ][ :get_converter ]
+        
+        convert_method = if run_converter
+            GetSetMap[ swing_klass ][ :get_converter ]
+        else
+            nil
+        end
+        
         return if !get_method
 
         #1.  Get the new value
@@ -206,6 +212,12 @@ class GUIItem
 
         #puts "sending set value to element: #{@gui_element.obj_info} --  #{@value.inspect}"
         @gui_element.send( set_method, @value )
+    end
+
+    def append_value( val )        
+        cur_val = get_value( false )
+        cur_val = "" if cur_val.nil?
+        set_value( "#{cur_val}#{val}" )
     end
     
     def render_gui_panel()

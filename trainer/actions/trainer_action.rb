@@ -62,7 +62,7 @@ class TrainerAction
   end
 
   def init_action_obj()
-      @action_obj = get_constant( @action ).new( @data.all_vars )
+      @action_obj = get_constant( @action ).new( @data.all_vars_to_load_data )
       @action_obj
   end
 

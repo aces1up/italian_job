@@ -70,6 +70,10 @@ class GUIContainer
         @gui_elements[var][:gui_handler]
     end
 
+    def get_focused_handler()
+        get_handler( @focused )
+    end
+
     def clear_root_pan()
         root_pan = get_root_panel
         root_pan.removeAll()

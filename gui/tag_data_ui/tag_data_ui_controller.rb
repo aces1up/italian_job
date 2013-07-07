@@ -44,6 +44,7 @@ class TagDataUiController < ApplicationController
 
   def insert_tag_button_action_performed()
       if focused_var
+          model.append_tag
           model.export_tag_data()
       else
           alert_pop("Cannot Insert Tag, no Action Data Field Selected!")
