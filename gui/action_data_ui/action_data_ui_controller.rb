@@ -8,6 +8,12 @@ class ActionDataUiController < ApplicationController
       set_action_label()
   end
 
+  def close()
+      puts "clearing focus data"
+      test_runner_obj.selected_obj.data.clear_focused if test_runner_obj
+      super()
+  end
+
   def set_action_label()
       action_klass = test_runner_obj.selected_obj.action
       label        = get_gui_handle( :action_class_label )

@@ -16,14 +16,14 @@ class TrainerAction
 		@has_run      =   false
 		@status       =   :idle
 		@breakpoint   =   false
-    @stop         =   false #<---- set to true when we get a stop signal
+    @stop         =   false    #<---- set to true when we get a stop signal
 
     #our log / info about this action
     @output       =   ""
 		@log          =   ""                                             #<---- log of everything that happens with this action
     @action       =   self.class.to_s.gsub('Trainer','')
 
-		@data         =   GUIContainer.new( self.class.trainer_data )    #<---- data used to init our action object
+		@data         =   ActionGUIDataHelper.new( self.class.trainer_data )    #<---- data used to init our action object
 		@action_obj   =   nil                                            #<---- the action object we are currently running
 
     update()
@@ -49,6 +49,7 @@ class TrainerAction
 
   def save_trainer_data()
       @data.save
+      @data.clear_focused
   end
 
   def reset()

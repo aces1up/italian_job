@@ -117,6 +117,11 @@ begin
   require 'gui/inspector_ui/inspector_ui_controller'
   require 'gui/action_data_ui/action_data_ui_controller'
   require 'gui/tag_data_ui/tag_data_ui_controller'
+  require 'gui/tag_data_ui/tag_handlers/default_tag_handler'
+  require 'gui/tag_data_ui/tag_handlers/captcha_tag_handler'
+
+
+
   require 'gui/dashboard_ui/dashboard_ui_controller'
 
   #our info_ui Requires
@@ -150,7 +155,6 @@ begin
 
 
   DashboardUiController.instance.open
-
 
 rescue => e
   show_error_dialog_and_exit(e)

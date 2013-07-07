@@ -6,9 +6,10 @@ class GUIContainer
 
     attr_reader :focused
 
-    def initialize( gui_elements={} )
+    def initialize( gui_elements={}, root_panel=nil )
 
         @gui_elements = gui_elements
+        @root_panel   = root_panel
         @focused      = nil     #<--- current var_name that has focus
         init_handlers
 
@@ -36,6 +37,7 @@ class GUIContainer
             var_args[:var_name]        = var
             var_args[:focus_gained]    = focus_gained
             var_args[:focus_lost]      = focus_lost
+            var_args[:root_pan]        ||= @root_panel
             var_args[:gui_handler]     = GUIItem.new( var_args )
         end
     end
@@ -52,9 +54,7 @@ class GUIContainer
     def get_root_panel()
         @gui_elements.first.last[:gui_handler].get_root_panel
     end
-
     
-
     def add( element_args )
         @gui_elements.merge!( element_args )
         init_handlers
