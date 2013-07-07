@@ -4,11 +4,40 @@ class GUIContainer
 
     include MonkeyBarsHelper
 
+    attr_reader :focused
+
     def initialize( gui_elements={} )
 
         @gui_elements = gui_elements
+        @focused      = nil     #<--- current var_name that has focus
         init_handlers
 
+    end
+
+    def clear_focused()
+        @focused = nil
+    end
+
+    def has_focused?()
+        #reports if an element in the @gui_elements has been focused or not.
+        !@focused.nil?
+    end
+    
+    def focus_gained()
+        lambda { |var_name| @focused = var_name }
+    end
+    
+    def focus_lost()
+        lambda { |var_name| }
+    end
+
+    def init_handlers()
+        @gui_elements.each do |var, var_args|
+            var_args[:var_name]        = var
+            var_args[:focus_gained]    = focus_gained
+            var_args[:focus_lost]      = focus_lost
+            var_args[:gui_handler]     = GUIItem.new( var_args )
+        end
     end
 
     def import( data={} )
@@ -24,11 +53,7 @@ class GUIContainer
         @gui_elements.first.last[:gui_handler].get_root_panel
     end
 
-    def init_handlers()
-        @gui_elements.each do |var, var_args|
-            var_args[:gui_handler] = GUIItem.new( var_args )
-        end
-    end
+    
 
     def add( element_args )
         @gui_elements.merge!( element_args )

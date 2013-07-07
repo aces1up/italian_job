@@ -35,21 +35,25 @@ public class ActionData extends javax.swing.JFrame {
         save_trainer_data_button = new javax.swing.JButton();
         action_class_label = new javax.swing.JLabel();
         open_inspector_button = new javax.swing.JButton();
+        tag_options_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trainer Data");
 
         action_data_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
 
-        save_trainer_data_button.setFont(new java.awt.Font("Tahoma", 0, 18));
+        save_trainer_data_button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         save_trainer_data_button.setText("Save Trainer Data");
 
         action_class_label.setFont(new java.awt.Font("Tahoma", 0, 18));
         action_class_label.setForeground(new java.awt.Color(0, 0, 204));
         action_class_label.setText("Action Class");
 
-        open_inspector_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        open_inspector_button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         open_inspector_button.setText("Open Inspector");
+
+        tag_options_button.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tag_options_button.setText("Tag Options");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,14 +61,17 @@ public class ActionData extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(action_data_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(save_trainer_data_button, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(action_class_label)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(open_inspector_button, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(action_class_label)
+                            .addComponent(save_trainer_data_button, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tag_options_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(open_inspector_button, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,7 +81,9 @@ public class ActionData extends javax.swing.JFrame {
                     .addComponent(action_class_label)
                     .addComponent(open_inspector_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(save_trainer_data_button)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(save_trainer_data_button)
+                    .addComponent(tag_options_button))
                 .addGap(18, 18, 18)
                 .addComponent(action_data_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                 .addContainerGap())
@@ -99,6 +108,7 @@ public class ActionData extends javax.swing.JFrame {
     private javax.swing.JPanel action_data_panel;
     private javax.swing.JButton open_inspector_button;
     private javax.swing.JButton save_trainer_data_button;
+    private javax.swing.JButton tag_options_button;
     // End of variables declaration//GEN-END:variables
 
 }

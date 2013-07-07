@@ -18,11 +18,12 @@ class GUIItem
 
     include MonkeyBarsHelper
     include GUIItemBuilder
+    include GUIFocusSetter
     include ValueConveter
 
 
     attr_accessor :value
-    attr_reader   :has_rendered, :root_pan
+    attr_reader   :has_rendered, :root_pan, :focused
 
     def initialize ( var_args={} )
 
@@ -32,14 +33,15 @@ class GUIItem
         @auto_resize      = var_args[:auto_resize]  ||   true
         @value            = var_args[:value]        ||   nil   #<---  the vaue retrieved from the gui_element
 
-        @swing_klass      = nil                               #<---  the swing klass of gui_element
-        @element_panel    = nil                               #<---  this is the panel that enclosed our gui_element
-        @gui_element      = nil                               #<---  gui element we created with this class
-        @enclose_in       = nil                               #<---  if we are enclosing @gui_element in an additional panel
+        @swing_klass      = nil            #<---  the swing klass of gui_element
+        @element_panel    = nil            #<---  this is the panel that enclosed our gui_element
+        @gui_element      = nil            #<---  gui element we created with this class
+        @enclose_in       = nil            #<---  if we are enclosing @gui_element in an additional panel
 
         #state Variables
-        @has_rendered     = false                             #<--- set to true after we have rendered at least once.
-        @is_generated     = false                             #<--- set to true when we have used this object to build this element
+        @has_rendered     = false          #<--- set to true after we have rendered at least once.
+        @is_generated     = false          #<--- set to true when we have used this object to build this element
+        @focused          = false          #<--- set to true when this gui_element is focused
 
 
         @var_args[:pan_x] = @var_args[:pan_x] || DefaultPanelSize[:pan_x]
@@ -78,7 +80,7 @@ class GUIItem
         #  :gui_args      # this is an array of args to be passed when
                           # creating the gui_elemement
 
-        raise GUIError, "Cannot Built Gui Item for #{@render_klass.inspect} -- No Root Panel Specified!" if !@gui_element.is_a?( Symbol ) and !@root_pan
+        raise GUIError, "Cannot Build Gui Item for #{@render_klass.inspect} -- No Root Panel Specified!" if !@gui_element.is_a?( Symbol ) and !@root_pan
 
         #init_element()
     end

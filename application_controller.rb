@@ -17,4 +17,8 @@ class ApplicationController < Monkeybars::Controller
       signal( :get_gui_handle )
   end
 
+  def test_runner_obj()
+      DashboardUiController.instance.get_model_var( :test_runner )
+  end
+
 end

@@ -90,11 +90,13 @@ begin
   require 'gui/helpers/monkeybars/monkeybars_helpers'
 
   require 'gui/helpers/gui_generator/gui_item/value_converter'
+  require 'gui/helpers/gui_generator/gui_item/gui_item_focus_setter'
   require 'gui/helpers/gui_generator/gui_item/gui_item_builder'
   require 'gui/helpers/gui_generator/gui_item/gui_item_class'
 
   require 'gui/helpers/gui_generator/gui_container/gui_container_class'
-  require 'gui/helpers/action_listener_helper'
+  require 'gui/helpers/listeners/action_listener_helper'
+  require 'gui/helpers/listeners/focus_listener'
   require 'gui/helpers/dialog_helpers'
   require 'gui/helpers/combobox_helper'
   require 'gui/helpers/filechooserhelper/file_chooser_helper'

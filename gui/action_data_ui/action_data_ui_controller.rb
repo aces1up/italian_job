@@ -14,12 +14,12 @@ class ActionDataUiController < ApplicationController
       label.set_text( action_klass )
   end
 
-  def test_runner_obj()
-      DashboardUiController.instance.get_model_var( :test_runner )
-  end
-
   def open_inspector_button_action_performed()
       InspectorUiController.instance.open
+  end
+
+  def tag_options_button_action_performed()
+      TagDataUiController.instance.open
   end
 
   def save_trainer_data_button_action_performed()

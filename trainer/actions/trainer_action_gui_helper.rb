@@ -20,6 +20,7 @@ module TrainerActionGUIHelper
       begin
           ActionDataUiController.instance.open
           ActionDataUiController.instance.set_action_label
+          @data.clear_focused
           @data.render
       rescue => err
           alert_pop_err( err, "Render Data Error: " )

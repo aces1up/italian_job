@@ -1,5 +1,7 @@
 
 #methods for actually creating these gui elements
+FocusedBackgroundColor = Color.new( 204,255,204 )
+
 
 module GUIItemBuilder
   
@@ -55,6 +57,7 @@ module GUIItemBuilder
             when 'Java::JavaxSwing::JTextField'
                 @var_args[:ele_args] ||= [20]
                 @gui_element = javax.swing.JTextField.new( *@var_args[:ele_args] )
+                set_focus_listener()
 
             when 'Java::JavaxSwing::JTextArea'
 
@@ -74,6 +77,7 @@ module GUIItemBuilder
 
                 end
 
+                set_focus_listener()
 
             when 'Java::JavaxSwing::JSpinner'
                 @var_args[:ele_args] ||= [1, 0, 20, 1]
