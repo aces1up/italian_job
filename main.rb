@@ -59,6 +59,8 @@ begin
   java_import java.awt.event.ActionListener
   java_import java.awt.event.FocusListener
   java_import java.awt.Color
+  java_import javax.swing.JFileChooser
+
 
   
   $working_directory = 'c:/lwb-trainer/'
@@ -73,6 +75,8 @@ begin
   require 'thread/thread_each_pool'
 
   require 'botter'
+
+  require 'constants'
 
   #utility
   require 'util/trainer_utility'
@@ -93,11 +97,16 @@ begin
   require 'gui/helpers/action_listener_helper'
   require 'gui/helpers/dialog_helpers'
   require 'gui/helpers/combobox_helper'
+  require 'gui/helpers/filechooserhelper/file_chooser_helper'
+
 
   #jtable helpers
   require 'gui/helpers/table_helpers/jtable_getvalue_helper'
   #jtree_helpers
   require 'gui/helpers/jtree_helpers/jtree_render_hash_helper/jtree_hash_default_node'
+  #menu Helpers
+  require 'gui/helpers/menu_helper/menu_helper_class'
+
 
   require 'gui/dashboard_ui/action_table/action_table_renderer'
   require 'gui/dashboard_ui/action_table/action_table_listener'
@@ -119,20 +128,26 @@ begin
 
   #data classes
   require 'trainer/actions/data/save_var_t_data'
+  require 'trainer/actions/data/element_t_data'
 
   require 'trainer/actions/data/default_t_data'
+  require 'trainer/actions/trainer_action_gui_helper'
   require 'trainer/actions/trainer_action'
-  require 'trainer/actions/save_regex_t_action'
-  require 'trainer/actions/goto_t_action'
-  require 'trainer/actions/verify_string_t_action'
+  require 'trainer/actions/data/click_element_t_data'
+  require 'trainer/actions/data/set_element_t_data'
+  require 'trainer/actions/data/save_regex_t_action'
+  require 'trainer/actions/data/goto_t_action'
+  require 'trainer/actions/data/verify_string_t_action'
+  require 'trainer/actions/data/verify_element_t_data'
 
 
   require 'trainer/connection_initializer'
+
+  require 'trainer/load_save_module'
   require 'trainer/test_runner'
 
 
   DashboardUiController.instance.open
-
 
 
 rescue => e

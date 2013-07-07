@@ -18,6 +18,10 @@ class ActionDataUiController < ApplicationController
       DashboardUiController.instance.get_model_var( :test_runner )
   end
 
+  def open_inspector_button_action_performed()
+      InspectorUiController.instance.open
+  end
+
   def save_trainer_data_button_action_performed()
       selected_action = test_runner_obj.selected_obj
       selected_action.save_trainer_data if selected_action

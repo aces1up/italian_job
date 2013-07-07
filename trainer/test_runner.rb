@@ -5,6 +5,7 @@ class TestRunner
   include BotFrameWorkModules
   include ConnectionInitializer
   include MonkeyBarsHelper
+  include LoadSaveModule
 
 	# this should run in its own thread just like
 	# a normal function would
@@ -22,6 +23,10 @@ class TestRunner
       @test_thread     = nil    #<--- the test thread that last executed this test.
 
 	end
+
+  def update()
+      DashboardUiController.instance.get_model_var( :action_table_model ).update
+  end
 
   def start_test()
       @test_thread = Thread.new { run_test }
@@ -50,10 +55,49 @@ class TestRunner
       @trainer_actions << action_klass.new
   end
 
+  def insert( action_klass )
+      return if !@selected_index
+      @trainer_actions.insert( @selected_index, action_klass.new )
+      @selected_index = nil
+      update()
+  end
+
+  def delete()
+      return if !@selected_index
+      @trainer_actions.delete_at( @selected_index )
+      @selected_index = nil
+      update()
+  end
+
   def init_test()
       init_vars()
       reset_all()
       setup_connection()
+  end
+
+  def run_single_action()
+
+      return if !selected_obj
+
+      cloned = get_clone_vars( @test_thread ) if @test_thread
+
+      @test_thread = Thread.new {
+          begin
+
+              clone_vars( cloned ) if cloned
+
+              init_vars if !has_var_mediator?
+
+              Thread.current.init_uuid
+              selected_obj.reset
+              setup_connection()
+              selected_obj.run
+
+          rescue => err
+              alert_pop_err( err, "Run Single Action Error: ")
+          end
+
+      }
   end
 
   def run_test()
@@ -71,7 +115,7 @@ class TestRunner
           end
 
       rescue => err
-          alert_pop_err(err, "Run Test Error: ")
+          alert_pop_err( err, "Run Test Error: ")
       end
 
   end

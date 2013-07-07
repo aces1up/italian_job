@@ -11,6 +11,15 @@ class GUIContainer
 
     end
 
+    def import( data={} )
+        data.each do |import_var, value|
+            if @gui_elements.has_key?( import_var )
+                #@gui_elements[import_var][:value] = value
+                @gui_elements[import_var][:gui_handler].set_value( value )
+            end
+        end
+    end
+
     def get_root_panel()
         @gui_elements.first.last[:gui_handler].get_root_panel
     end

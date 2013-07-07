@@ -16,5 +16,12 @@ class DashboardUiView < ApplicationView
       actions_table.addMouseListener( ActionJtableMouseListener.new )
   end
 
+  define_signal :name => :show_log, :handler => :show_log
+  def show_log( model, transfer )
+      log_textarea.set_text( transfer[:text] )
+      log_textarea.setCaretPosition(0)
+      dashboard_tabbed_pane.setSelectedIndex( 1 )
+  end
+
 
 end

@@ -8,11 +8,11 @@ class ActionTableHandler < javax.swing.table.DefaultTableModel
   def initialize()
 
     @columns ||= {
-          :action         => :shown,
-          :output         => :shown,
-          :status         => :shown,
-          :has_run        => :shown,
-          :breakpoint     => :shown
+          :action         => 100,
+          :output         => 350,
+          :status         => 30,
+          :has_run        => 30,
+          :breakpoint     => 30
     }
 
     @gui_element = DashboardUiController.instance.get_gui_handle( :actions_table )
@@ -21,6 +21,7 @@ class ActionTableHandler < javax.swing.table.DefaultTableModel
 
     init_columns()
     init_model()
+    init_column_widths()
     init_renderer()
     update()
   end
@@ -42,16 +43,27 @@ class ActionTableHandler < javax.swing.table.DefaultTableModel
       @gui_element.model = self
   end
 
+  def init_column_widths()
+      colmodel = @gui_element.getColumnModel()
+      @columns.each do |column, size|
+            begin
+                  col_index = colmodel.getColumnIndex( column.to_s )
+                  col = colmodel.getColumn( col_index )
+                  col.setPreferredWidth( size )
+            rescue => err
+                alert_pop_err( err, "Error Initializing Action Table Column:" )
+            end
+       end
+  end
+
   def init_columns()
-      @columns.each do |column, column_type|
-          add_column( column ) if column_type == :shown
-      end
+       @columns.each do |column, size| add_column( column ) end
   end
 
   def getColumnCount
     #make sure we only return the count for the number of
     #columns that are set as shown.
-    return @columns.count{|column, column_type| column_type == :shown}
+    @columns.length
   end
 
   def getRowCount

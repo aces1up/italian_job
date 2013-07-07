@@ -43,17 +43,22 @@ public class Dash extends javax.swing.JFrame {
         use_proxies_checkbox = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        run_test_button = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
-        stop_test_button = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        dashboard_tabbed_pane = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         actions_table = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        log_textarea = new javax.swing.JTextArea();
         version_label = new javax.swing.JLabel();
+        run_test_button = new javax.swing.JButton();
+        stop_test_button = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        inspector_menu_item = new javax.swing.JMenuItem();
+        load_test_menu_item = new javax.swing.JMenuItem();
+        save_test_menu_item = new javax.swing.JMenuItem();
         tool_menu = new javax.swing.JMenu();
+        inspector_menu_item = new javax.swing.JMenuItem();
         show_info_window_menu_item = new javax.swing.JMenuItem();
         reboot_menu_item = new javax.swing.JMenuItem();
 
@@ -67,7 +72,7 @@ public class Dash extends javax.swing.JFrame {
 
         action_list_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        add_action_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        add_action_button.setFont(new java.awt.Font("Tahoma", 0, 14));
         add_action_button.setText("Add Action");
         add_action_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +96,7 @@ public class Dash extends javax.swing.JFrame {
                 .addComponent(insert_action_button)
                 .addGap(18, 18, 18)
                 .addComponent(delete_action_button)
-                .addGap(72, 72, 72))
+                .addGap(105, 105, 105))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,16 +112,16 @@ public class Dash extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Default Connection Options");
 
-        connection_type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        connection_type_combo.setFont(new java.awt.Font("Tahoma", 0, 14));
         connection_type_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Phantomjs", "IE", "Firefox", "Chrome", "Socket" }));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel3.setText("Connection Type");
 
-        use_proxies_checkbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        use_proxies_checkbox.setFont(new java.awt.Font("Tahoma", 0, 14));
         use_proxies_checkbox.setSelected(true);
         use_proxies_checkbox.setText("Use Proxies");
 
@@ -133,7 +138,7 @@ public class Dash extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(use_proxies_checkbox)
-                            .addComponent(connection_type_combo, 0, 95, Short.MAX_VALUE))))
+                            .addComponent(connection_type_combo, 0, 111, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -147,7 +152,7 @@ public class Dash extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(use_proxies_checkbox)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102)));
@@ -155,13 +160,7 @@ public class Dash extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Profile:");
 
-        run_test_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        run_test_button.setText("Run Test");
-
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        stop_test_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        stop_test_button.setText("Stop Test");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -172,11 +171,7 @@ public class Dash extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(run_test_button, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(stop_test_button, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(405, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,14 +179,12 @@ public class Dash extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(run_test_button)
-                    .addComponent(stop_test_button))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         actions_table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
-        actions_table.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        actions_table.setFont(new java.awt.Font("Tahoma", 0, 18));
         actions_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -205,20 +198,61 @@ public class Dash extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(actions_table);
 
-        jTabbedPane1.addTab("Actions", jScrollPane1);
+        dashboard_tabbed_pane.addTab("Actions", jScrollPane1);
+
+        log_textarea.setBackground(new java.awt.Color(0, 0, 0));
+        log_textarea.setColumns(20);
+        log_textarea.setEditable(false);
+        log_textarea.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        log_textarea.setForeground(new java.awt.Color(0, 255, 0));
+        log_textarea.setLineWrap(true);
+        log_textarea.setRows(5);
+        log_textarea.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(log_textarea);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        dashboard_tabbed_pane.addTab("Log", jPanel4);
 
         version_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         version_label.setForeground(new java.awt.Color(0, 0, 204));
         version_label.setText("Version:");
 
+        run_test_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        run_test_button.setText("Run Test");
+
+        stop_test_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        stop_test_button.setText("Stop Test");
+
         jMenu1.setText("File");
 
-        inspector_menu_item.setText("Inspector");
-        jMenu1.add(inspector_menu_item);
+        load_test_menu_item.setText("Load Test");
+        jMenu1.add(load_test_menu_item);
+
+        save_test_menu_item.setText("Save Test");
+        jMenu1.add(save_test_menu_item);
 
         jMenuBar1.add(jMenu1);
 
         tool_menu.setText("Tools");
+
+        inspector_menu_item.setText("Inspector");
+        tool_menu.add(inspector_menu_item);
 
         show_info_window_menu_item.setText("Trainer Info Window");
         tool_menu.add(show_info_window_menu_item);
@@ -234,35 +268,48 @@ public class Dash extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 915, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dashboard_tabbed_pane, 0, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(run_test_button, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(version_label, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(stop_test_button, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(489, 489, 489)
+                        .addComponent(version_label, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addComponent(version_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(21, 21, 21)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(version_label)
+                        .addGap(24, 24, 24))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(run_test_button)
+                            .addComponent(stop_test_button))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(dashboard_tabbed_pane, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -288,6 +335,7 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JTable actions_table;
     private javax.swing.JButton add_action_button;
     private javax.swing.JComboBox connection_type_combo;
+    private javax.swing.JTabbedPane dashboard_tabbed_pane;
     private javax.swing.JButton delete_action_button;
     private javax.swing.JButton insert_action_button;
     private javax.swing.JMenuItem inspector_menu_item;
@@ -300,10 +348,14 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenuItem load_test_menu_item;
+    private javax.swing.JTextArea log_textarea;
     private javax.swing.JMenuItem reboot_menu_item;
     private javax.swing.JButton run_test_button;
+    private javax.swing.JMenuItem save_test_menu_item;
     private javax.swing.JMenuItem show_info_window_menu_item;
     private javax.swing.JButton stop_test_button;
     private javax.swing.JMenu tool_menu;

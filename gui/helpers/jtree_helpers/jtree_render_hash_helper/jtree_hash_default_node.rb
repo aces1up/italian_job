@@ -16,45 +16,27 @@ class JtreeHashDefaultNode < DefaultMutableTreeNode
         super()
 
     end
-=begin
-    def init_hash_children( hash_var )
 
-        case
-            when !hash_var.is_a?( Hash )
-                @value = hash_var
-
-            when hash_var.length == 1
-                @value = hash_var.first.first
-                @i_children << JtreeHashDefaultNode.new( hash_var.first.last, self )
-
-        else
-            hash_var.each do | key, val |
-
-                case
-                     when  ( val.is_a?(Hash) and val.empty? ) ; next
-                     when  val.is_a?*
-                send_hash = val.is_a?( Hash ) ? val : { key => val }
-                @i_children << JtreeHashDefaultNode.new( send_hash, self, key )
-
-            end
-        end
-
-    end
-=end
     def init_hash()
+
+        @value ||= "Hash -- [#{@variable.length}] Elements --"
+
         @variable.each do |key, val|
             @i_children << JtreeHashDefaultNode.new( val, self, key )
         end
     end
 
     def init_array()
+
+        @value ||= "Array -- [#{@variable.length}] Elements --"
+
         @variable.each do |val|
             @i_children << JtreeHashDefaultNode.new( val, self )
         end
     end
 
     def init_elements()
-        #init_hash_children( @hash )
+
         case @variable.class.to_s.downcase.to_sym
             when :hash   ; init_hash
             when :array  ; init_array
@@ -114,18 +96,14 @@ class JtreeHashDefaultNode < DefaultMutableTreeNode
 
     #  Methods to satisfy MutableTreeNode interface
     def insert(node, index)
-        #puts "doing insert: #{node.inspect} -- index: #{index}"
         super(node, index)
     end
 
     def setParent( node )
-        #puts "setting parent: #{node.obj_info}"
         @i_parent = node
     end
 
     def toString()
-        #@str ||= "#{@element.tag_name.upcase}#{get_str_attr( :id )}#{get_str_attr( :class )}"
-        #@str
         @i_parent.nil? ? 'Root' : @value.inspect
     end
 end

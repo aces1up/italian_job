@@ -7,6 +7,7 @@ class TrainerAction
 
   extend DefaultTrainerData
   include BotFrameWorkModules
+  include TrainerActionGUIHelper
 
   attr_reader :has_run, :status, :breakpoint, :output, :action, :data
 
@@ -28,16 +29,14 @@ class TrainerAction
     update()
 	end
 
-  #gui handling stuff
-
-  def update()
-      DashboardUiController.instance.get_model_var( :action_table_model ).update
+  def to_disk()
+      #generates a hash for this action_data to save to disk
+      init_action_obj.to_disk
   end
 
-  def update_msg( msg_output, log_level, thread )
-      @output = msg_output
-      @log   += "#{msg_output}\n"
-      update()
+  def import( data={} )
+      #sets data on gui according to to data hash
+      @data.import( data )
   end
 
   def set_action_status( status )
@@ -46,16 +45,6 @@ class TrainerAction
 
   def set_status_from_enviornment()
       set_action_status( self[:status] )
-  end
-
-  def render_trainer_data()
-      begin
-          ActionDataUiController.instance.open
-          ActionDataUiController.instance.set_action_label
-          @data.render
-      rescue => err
-          alert_pop_err( err, "Render Data Error: " )
-      end
   end
 
   def save_trainer_data()
@@ -73,6 +62,7 @@ class TrainerAction
 
   def init_action_obj()
       @action_obj = get_constant( @action ).new( @data.all_vars )
+      @action_obj
   end
 
   def run()
@@ -90,13 +80,15 @@ class TrainerAction
 
       rescue GeneralAppException => err
 
-          err.report
-          set_status_from_enviornment()
-
+         err.report
+         set_status_from_enviornment()
+         #alert_pop_err( err, 'Rescue General Error' )
+          
       rescue FatalAppError => err
 
-          err.report
-          set_status_from_enviornment()
+         err.report
+         set_status_from_enviornment()
+         #alert_pop_err( err, 'Rescue Fatal Error' )
 
       rescue => err
 

@@ -63,13 +63,34 @@ class DashboardUiController < ApplicationController
       reboot()
   end
 
+  def get_action_klass_selected()
+      get_constant( "#{model.action_list_combo.get_selected}Trainer" )
+  end
+
   def add_action_button_action_performed()
-      action_klass = get_constant( "#{model.action_list_combo.get_selected}Trainer" )
-      model.test_runner.add( action_klass )
+      model.test_runner.add( get_action_klass_selected )
+  end
+
+  def insert_action_button_action_performed()
+      model.test_runner.insert( get_action_klass_selected )
+  end
+
+  def delete_action_button_action_performed()
+      model.test_runner.delete()
   end
 
   def run_test_button_action_performed()
       model.test_runner.start_test
+  end
+
+  def save_test_menu_item_action_performed()
+      FileChooserHelper.new( model.test_runner.save_to_disk, TestsDirectory, true )
+  end
+
+
+  def show_log( text )
+      transfer[ :text ] = text
+      signal( :show_log )
   end
 
 
