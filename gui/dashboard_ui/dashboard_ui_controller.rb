@@ -9,6 +9,23 @@ class DashboardUiController < ApplicationController
       model.action_list_combo = ComboBoxHelper.new( {:gui_element => :action_list_combo, :clear => true, :selected => 'GotoPage', :options => trainer_actions} )
   end
 
+  def init_file_combo( gui_handle, directory, on_select_lam, selected=nil )
+      files = dir_files( directory, true ).map{ |file| file.gsub( directory, '' ) }
+      files.unshift( 'none' )
+      selected ||= 'none'
+      ComboBoxHelper.new( {:gui_element => gui_handle, :clear => true, :clear_listeners => true, :selected => selected, :options => files, :on_select_lambda => on_select_lam} )
+  end
+
+  def init_profile_combo( selected=nil )
+      profile_combo_box = init_file_combo( :profile_combo, ProfileDirectory, model.on_profile_combo_select_lambda, selected )
+      model.profile_list_combo = profile_combo_box
+  end
+
+  def init_test_files_combo( selected=nil )
+      file_combo_box = init_file_combo( :test_file_combo, TestsDirectory, model.on_file_combo_select_lambda, selected )
+      model.file_list_combo = file_combo_box
+  end
+
   def init_version() ; signal( :do_version ) end
 
   def init_actions_table_listener()
@@ -16,21 +33,26 @@ class DashboardUiController < ApplicationController
   end
 
   def load()
+
       InspectorUiController.instance.reboot
       InfoUiController.instance.close
       ActionDataUiController.instance.close
       TagDataUiController.instance.close
-      init_version()
 
       model.test_runner             = TestRunner.new
       model.action_table_model      = ActionTableHandler.new
-      init_actions_combo()
+
+      #init our combo boxes
+      init_actions_combo()          #<---- our action lists
+      init_profile_combo()          #<---- our profile combo
+      init_test_files_combo()       #<---- show our test files
 
       load_once()
   end
 
   def load_once()
       return if @loaded
+      init_version()
       init_actions_table_listener()
       @loaded = true
   end
@@ -87,11 +109,9 @@ class DashboardUiController < ApplicationController
       FileChooserHelper.new( model.test_runner.save_to_disk, TestsDirectory, true )
   end
 
-
   def show_log( text )
       transfer[ :text ] = text
       signal( :show_log )
   end
-
 
 end
