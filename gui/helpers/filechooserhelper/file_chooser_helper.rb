@@ -1,12 +1,15 @@
 
 
 class FileChooserHelper
-    def initialize( lam_block, start_directory=$working_directory, save=false, choose_directory=false )
+
+    attr_reader :file
+
+    def initialize( lam_block=nil, start_directory=$working_directory, save=false, choose_directory=false )
 
         @lam              = lam_block
         @save             = save
-        @choose_directory = choose_directory
-        @start_directory  = start_directory
+        @choose_directory = choose_directory     #<--- set to true only to allow selection of Directory
+        @start_directory  = start_directory      #<--- start directory to show in file chooser
         @file             = nil
 
         open_file_chooser
@@ -32,7 +35,9 @@ class FileChooserHelper
         return if result == 1
 
         @file = filechooser.getSelectedFile().toString
-        run_block
+
+
+        @lam ? run_block : @file
     end
 
 

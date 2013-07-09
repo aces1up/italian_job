@@ -6,6 +6,8 @@ class TestRunner
   include ConnectionInitializer
   include MonkeyBarsHelper
   include LoadSaveModule
+  include ProfileInitializer
+
 
 	# this should run in its own thread just like
 	# a normal function would
@@ -23,6 +25,10 @@ class TestRunner
       @test_thread     = nil    #<--- the test thread that last executed this test.
 
 	end
+
+  def teardown()
+      #do any teardown / cleanup code before killing trainer
+  end
 
   def update()
       DashboardUiController.instance.get_model_var( :action_table_model ).update
@@ -51,8 +57,8 @@ class TestRunner
       @selected_index = index
   end
 
-  def add( action_klass )
-      @trainer_actions << action_klass.new
+  def add_action( action_klass, init_data={} )
+      @trainer_actions << action_klass.new( init_data )
   end
 
   def insert( action_klass )
@@ -71,6 +77,7 @@ class TestRunner
 
   def init_test()
       init_vars()
+      init_profile()
       reset_all()
       setup_connection()
   end
@@ -87,6 +94,8 @@ class TestRunner
               clone_vars( cloned ) if cloned
 
               init_vars if !has_var_mediator?
+
+              init_profile if !has_profile?
 
               Thread.current.init_uuid
               selected_obj.reset

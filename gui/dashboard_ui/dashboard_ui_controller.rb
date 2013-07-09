@@ -10,7 +10,7 @@ class DashboardUiController < ApplicationController
   end
 
   def init_file_combo( gui_handle, directory, on_select_lam, selected=nil )
-      files = dir_files( directory, true ).map{ |file| file.gsub( directory, '' ) }
+      files = dir_files( directory, true ).map{ |file| file.gsub( directory, '' ).downcase }
       files.unshift( 'none' )
       selected ||= 'none'
       ComboBoxHelper.new( {:gui_element => gui_handle, :clear => true, :clear_listeners => true, :selected => selected, :options => files, :on_select_lambda => on_select_lam} )
@@ -39,7 +39,7 @@ class DashboardUiController < ApplicationController
       ActionDataUiController.instance.close
       TagDataUiController.instance.close
 
-      model.test_runner             = TestRunner.new
+      model.init_test_runner
       model.action_table_model      = ActionTableHandler.new
 
       #init our combo boxes
@@ -90,7 +90,7 @@ class DashboardUiController < ApplicationController
   end
 
   def add_action_button_action_performed()
-      model.test_runner.add( get_action_klass_selected )
+      model.test_runner.add_action( get_action_klass_selected )
   end
 
   def insert_action_button_action_performed()
@@ -107,6 +107,35 @@ class DashboardUiController < ApplicationController
 
   def save_test_menu_item_action_performed()
       FileChooserHelper.new( model.test_runner.save_to_disk, TestsDirectory, true )
+  end
+
+  def save_test_button_action_performed()
+
+      save_file = model.get_save_filename( model.file_list_combo, TestsDirectory )
+      return if !save_file
+      save_error = test_runner_obj.save_to_disk.call( save_file )
+      return if save_error
+
+      #refresh the save file list here and make sure we set selected
+      #as the newly saved file
+      selected = save_file.gsub( TestsDirectory, '' )
+      init_test_files_combo( selected )
+
+  end
+
+  def save_profile_button_action_performed()
+      save_file = model.get_save_filename( model.profile_list_combo, ProfileDirectory )
+      return if !save_file
+      save_error = test_runner_obj.save_profile_to_disk.call( save_file )
+      return if save_error
+
+      selected = save_file.gsub( ProfileDirectory, '' )
+      init_profile_combo( selected )
+  end
+  
+  def profile_selected()
+      selected = model.profile_list_combo.get_selected
+      selected == 'none' ? nil : selected
   end
 
   def show_log( text )

@@ -6,12 +6,13 @@ class GUIContainer
 
     attr_reader :focused
 
-    def initialize( gui_elements={}, root_panel=nil )
+    def initialize( gui_elements={}, root_panel=nil, init_data={} )
 
         @gui_elements = gui_elements
         @root_panel   = root_panel
         @focused      = nil     #<--- current var_name that has focus
-        init_handlers
+
+        init_handlers( init_data )
 
     end
 
@@ -32,14 +33,20 @@ class GUIContainer
         lambda { |var_name| }
     end
 
-    def init_handlers()
+    def init_handlers( init_data )
+
         @gui_elements.each do |var, var_args|
+
+            #setup our initial_value if we have init_data
+            var_args[:value] = init_data[var] if init_data[var]
+
             var_args[:var_name]        = var
             var_args[:focus_gained]    = focus_gained
             var_args[:focus_lost]      = focus_lost
             var_args[:root_pan]        ||= @root_panel
             var_args[:gui_handler]     = GUIItem.new( var_args )
         end
+
     end
 
     def import( data={} )

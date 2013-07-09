@@ -19,11 +19,34 @@ class ActionTableHandler < javax.swing.table.DefaultTableModel
     @renderer    = nil
     super()
 
-    init_columns()
-    init_model()
-    init_column_widths()
-    init_renderer()
-    update()
+    init()
+  end
+
+  def init()
+      init_columns()
+      init_model()
+      init_column_widths()
+      init_renderer()
+      update()
+  end
+
+  def clear_renderer()
+      @renderer.clear_renderer
+  end
+  
+  def clear_model()
+      @gui_element.model = javax.swing.table.DefaultTableModel.new
+      update()
+  end
+
+  def init_model()
+      @gui_element.model = self
+  end
+
+  def reset_model()
+      clear_model
+      clear_renderer
+      init()
   end
 
   def data()
@@ -32,15 +55,6 @@ class ActionTableHandler < javax.swing.table.DefaultTableModel
 
   def init_renderer()
       @renderer = ActionTableRenderer.new( @gui_element, self )
-  end
-
-  def clear_model()
-      @gui_element.model = javax.swing.table.DefaultTableModel.new
-      update()
-  end
-
-  def init_model()
-      @gui_element.model = self
   end
 
   def init_column_widths()

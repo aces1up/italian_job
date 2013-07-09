@@ -60,6 +60,7 @@ begin
   java_import java.awt.event.FocusListener
   java_import java.awt.Color
   java_import javax.swing.JFileChooser
+  java_import javax.swing.filechooser.FileSystemView
 
 
   
@@ -153,10 +154,12 @@ begin
   require 'trainer/connection_initializer'
 
   require 'trainer/load_save_module'
+  require 'trainer/profile_initializer'
   require 'trainer/test_runner'
 
 
   DashboardUiController.instance.open
+
 
 rescue => e
   show_error_dialog_and_exit(e)

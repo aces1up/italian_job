@@ -6,6 +6,7 @@ class ActionTableRenderer < javax.swing.table.DefaultTableCellRenderer
 
         @column      = :status
         @table_model = table_model
+        @jtable      = jtable
 
         super()
 
@@ -15,7 +16,13 @@ class ActionTableRenderer < javax.swing.table.DefaultTableCellRenderer
     def init_renderer(jtable)
         return if !jtable
         jtable.getColumnModel.getColumns.to_a.each do |table_column_obj|
-            table_column_obj.setCellRenderer(self)
+            table_column_obj.setCellRenderer( self )
+        end
+    end
+
+    def clear_renderer()
+        @jtable.getColumnModel.getColumns.to_a.each do |table_column_obj|
+            table_column_obj.setCellRenderer( javax.swing.table.DefaultTableCellRenderer.new )
         end
     end
 
@@ -28,6 +35,11 @@ class ActionTableRenderer < javax.swing.table.DefaultTableCellRenderer
     end
 
     def do_render(row)
+
+        if !@table_model.data[ row ]
+            render_default
+            return
+        end
 
         case @table_model.data[ row ].status
 
@@ -54,6 +66,7 @@ class ActionTableRenderer < javax.swing.table.DefaultTableCellRenderer
         else
             render_default
         end
+
     end
 
     def render_value(row)

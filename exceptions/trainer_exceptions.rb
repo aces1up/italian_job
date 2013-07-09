@@ -1,4 +1,5 @@
 
 
-class GUIError  < FatalAppError          ; end
+class GUIError       < FatalAppError          ; end
+class TestLoadError  < FatalAppError          ; end
 

@@ -11,7 +11,7 @@ class TrainerAction
 
   attr_reader :has_run, :status, :breakpoint, :output, :action, :data
 
-	def initialize()
+	def initialize( init_data={} )
 
 		@has_run      =   false
 		@status       =   :idle
@@ -23,7 +23,7 @@ class TrainerAction
 		@log          =   ""                                             #<---- log of everything that happens with this action
     @action       =   self.class.to_s.gsub('Trainer','')
 
-		@data         =   ActionGUIDataHelper.new( self.class.trainer_data )    #<---- data used to init our action object
+		@data         =   ActionGUIDataHelper.new( self.class.trainer_data, nil, init_data )    #<---- data used to init our action object
 		@action_obj   =   nil                                            #<---- the action object we are currently running
 
     update()
