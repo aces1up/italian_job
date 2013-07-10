@@ -86,21 +86,31 @@ begin
   #our trainer exceptions
   require 'exceptions/trainer_exceptions'
 
+  #our Proxy Extensions
+  require 'cache/proxy/proxy_cache_patches'
+
   #our gui Requires
 
   require 'gui/helpers/monkeybars/monkeybars_helpers'
 
+  #Gui Generator Helper
   require 'gui/helpers/gui_generator/gui_item/value_converter'
   require 'gui/helpers/gui_generator/gui_item/gui_item_focus_setter'
   require 'gui/helpers/gui_generator/gui_item/gui_item_builder'
   require 'gui/helpers/gui_generator/gui_item/gui_item_class'
-
   require 'gui/helpers/gui_generator/gui_container/gui_container_class'
+
+  #Our General GUI Helpers
   require 'gui/helpers/listeners/action_listener_helper'
   require 'gui/helpers/listeners/focus_listener'
   require 'gui/helpers/dialog_helpers'
   require 'gui/helpers/combobox_helper'
   require 'gui/helpers/filechooserhelper/file_chooser_helper'
+
+  #Our Proxy GUI TAble
+  require 'gui/dashboard_ui/proxy_table/proxy_table_renderer'
+  require 'gui/dashboard_ui/proxy_table/proxy_jtable_handler'
+
 
 
   #jtable helpers
@@ -159,6 +169,7 @@ begin
 
 
   DashboardUiController.instance.open
+ 
 
 
 rescue => e

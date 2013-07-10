@@ -17,7 +17,7 @@
     def test_runner_obj()
         DashboardUiController.instance.get_model_var( :test_runner )
     end
-
+    
     def menu( other_data={} )
         #this is a hash struct with key being the menu name
         #and a lambda to perform when its clicked.

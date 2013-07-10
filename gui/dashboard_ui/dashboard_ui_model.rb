@@ -1,12 +1,14 @@
 class DashboardUiModel
 
     attr_accessor :test_runner, :action_table_model, :action_list_combo
-    attr_accessor :profile_list_combo, :file_list_combo
+    attr_accessor :profile_list_combo, :file_list_combo, :proxy_table_model
 
     def initialize()
 
         #gui Handles
         @action_table_model    =   nil
+        @proxy_table_model     =   nil
+
         @action_list_combo     =   nil
         @profile_list_combo    =   nil
         @file_list_combo       =   nil

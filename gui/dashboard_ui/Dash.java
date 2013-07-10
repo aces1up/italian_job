@@ -56,6 +56,9 @@ public class Dash extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         log_textarea = new javax.swing.JTextArea();
+        proxy_panel = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        proxy_table = new javax.swing.JTable();
         version_label = new javax.swing.JLabel();
         run_test_button = new javax.swing.JButton();
         stop_test_button = new javax.swing.JButton();
@@ -73,10 +76,10 @@ public class Dash extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
 
-        delete_action_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        delete_action_button.setFont(new java.awt.Font("Tahoma", 0, 14));
         delete_action_button.setText("Delete Action");
 
-        action_list_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        action_list_combo.setFont(new java.awt.Font("Tahoma", 0, 14));
 
         add_action_button.setFont(new java.awt.Font("Tahoma", 0, 14));
         add_action_button.setText("Add Action");
@@ -86,7 +89,7 @@ public class Dash extends javax.swing.JFrame {
             }
         });
 
-        insert_action_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        insert_action_button.setFont(new java.awt.Font("Tahoma", 0, 14));
         insert_action_button.setText("Insert Action");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -127,7 +130,7 @@ public class Dash extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel3.setText("Connection Type");
 
-        use_proxies_checkbox.setFont(new java.awt.Font("Tahoma", 0, 14));
+        use_proxies_checkbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         use_proxies_checkbox.setSelected(true);
         use_proxies_checkbox.setText("Use Proxies");
 
@@ -165,12 +168,12 @@ public class Dash extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel1.setText("Profile:");
 
-        profile_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        profile_combo.setFont(new java.awt.Font("Tahoma", 0, 14));
 
-        save_profile_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        save_profile_button.setFont(new java.awt.Font("Tahoma", 0, 14));
         save_profile_button.setText("Save");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -199,12 +202,12 @@ public class Dash extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel4.setText("File:");
 
-        test_file_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        test_file_combo.setFont(new java.awt.Font("Tahoma", 0, 14));
 
-        save_test_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        save_test_button.setFont(new java.awt.Font("Tahoma", 0, 14));
         save_test_button.setText("Save");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -272,7 +275,7 @@ public class Dash extends javax.swing.JFrame {
         log_textarea.setBackground(new java.awt.Color(0, 0, 0));
         log_textarea.setColumns(20);
         log_textarea.setEditable(false);
-        log_textarea.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        log_textarea.setFont(new java.awt.Font("Monospaced", 0, 18));
         log_textarea.setForeground(new java.awt.Color(0, 255, 0));
         log_textarea.setLineWrap(true);
         log_textarea.setRows(5);
@@ -298,14 +301,47 @@ public class Dash extends javax.swing.JFrame {
 
         dashboard_tabbed_pane.addTab("Log", jPanel4);
 
-        version_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        proxy_table.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        proxy_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(proxy_table);
+
+        javax.swing.GroupLayout proxy_panelLayout = new javax.swing.GroupLayout(proxy_panel);
+        proxy_panel.setLayout(proxy_panelLayout);
+        proxy_panelLayout.setHorizontalGroup(
+            proxy_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(proxy_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1021, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        proxy_panelLayout.setVerticalGroup(
+            proxy_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(proxy_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        dashboard_tabbed_pane.addTab("Proxy", proxy_panel);
+
+        version_label.setFont(new java.awt.Font("Tahoma", 0, 14));
         version_label.setForeground(new java.awt.Color(0, 0, 204));
         version_label.setText("Version:");
 
-        run_test_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        run_test_button.setFont(new java.awt.Font("Tahoma", 0, 14));
         run_test_button.setText("Run Test");
 
-        stop_test_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        stop_test_button.setFont(new java.awt.Font("Tahoma", 0, 14));
         stop_test_button.setText("Stop Test");
 
         jMenu1.setText("File");
@@ -418,9 +454,12 @@ public class Dash extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JMenuItem load_test_menu_item;
     private javax.swing.JTextArea log_textarea;
     private javax.swing.JComboBox profile_combo;
+    private javax.swing.JPanel proxy_panel;
+    private javax.swing.JTable proxy_table;
     private javax.swing.JMenuItem reboot_menu_item;
     private javax.swing.JButton run_test_button;
     private javax.swing.JButton save_profile_button;

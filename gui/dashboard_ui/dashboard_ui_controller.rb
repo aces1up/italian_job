@@ -32,6 +32,10 @@ class DashboardUiController < ApplicationController
       signal( :init_action_jtable_listener )
   end
 
+  def init_proxy_table()
+      model.proxy_table_model = ProxyTableHandler.new
+  end
+
   def load()
 
       InspectorUiController.instance.reboot
@@ -54,6 +58,7 @@ class DashboardUiController < ApplicationController
       return if @loaded
       init_version()
       init_actions_table_listener()
+      init_proxy_table()
       @loaded = true
   end
 

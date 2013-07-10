@@ -13,7 +13,7 @@ create_dir( ProfileDirectory )
 
 TagList = [
     #credentials
-    :username, :email, :domain,
+    :username, :email, :password, :domain,
 
     #captcha Handling
     :captcha, 

@@ -22,7 +22,7 @@ class InspectorUiView < ApplicationView
 
       clear_jtree( nil, nil )
 
-      show_invisible = show_invisible_checkbox.isSelected
+      show_invisible         = show_invisible_checkbox.isSelected
 
       root_node  = RootNode.new( transfer[:conn].root_element, show_invisible )
       tree_model = DefaultTreeModel.new( root_node )
