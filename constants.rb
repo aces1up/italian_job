@@ -26,3 +26,14 @@ TagList = [
     #file handling
     :random_line_from_file
 ]
+
+DOM_Elements = [ 'form', 'input', 'textarea', 'button', 'div', 'iframe', 'frame', 'span',
+                     'label', 'select', 'option',
+                     'body', 'tbody',
+                     'img', 'a',
+                     'h1', 'h2', 'h3', 'h4', 'h5',
+                     'br', 'p', 'b', 'fieldset', 'legend',
+                     'ul', 'li', 'table', 'tr', 'td',
+                     'dl', 'dt', 'dd', 'thead', 'th', 'dt', 'caption',
+                     'strong', 'hr'
+               ]

@@ -13,6 +13,23 @@ class InspectorUiController < ApplicationController
   set_close_action :close
 
   include BrowserWindow
+  
+  def init_filter_combo()
+      filter_options = DOM_Elements ; filter_options.unshift( 'none' )
+      model.filter_combo = ComboBoxHelper.new( {:gui_element => :filter_combo_box, :clear => true, :selected => 'none', :options => filter_options} )
+  end
+
+  def filter_selected?()
+      model.filter_combo.get_selected != 'none'
+  end
+
+  def filter_selected()
+      model.filter_combo.get_selected
+  end
+
+  def load()
+      init_filter_combo()
+  end
 
   def reboot()
       model.conn = nil

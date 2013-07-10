@@ -17,6 +17,18 @@
     def test_runner_obj()
         DashboardUiController.instance.get_model_var( :test_runner )
     end
+
+    def filter_selected?()
+        InspectorUiController.instance.filter_selected?
+    end
+
+    def filter_selected()
+        InspectorUiController.instance.filter_selected.to_sym
+    end
+
+    def element_method()
+        filter_selected? ? :elements_for_tag_name : :children_for_element
+    end
     
     def menu( other_data={} )
         #this is a hash struct with key being the menu name
@@ -42,7 +54,13 @@
 
     def init_elements()
 
-        @element.children_for_element( @show_invisible ).each do | child_element |
+        elements = if filter_selected?
+            @element.elements_for_tag_name( filter_selected, @show_invisible )
+        else
+            @element.children_for_element( @show_invisible )
+        end
+
+        elements.each do | child_element |
             @i_children << InspectorNode.new( child_element, @show_invisible, self )
         end
 
