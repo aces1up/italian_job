@@ -81,6 +81,7 @@ module GUIItemBuilder
 
             when 'Java::JavaxSwing::JSpinner'
                 @var_args[:ele_args] ||= [1, 0, 20, 1]
+                #initial value, min, max, step
                 spin_model = javax.swing.SpinnerNumberModel.new( *@var_args[:ele_args] )
                 spinner = javax.swing.JSpinner.new ; spinner.model = spin_model
                 @gui_element = spinner

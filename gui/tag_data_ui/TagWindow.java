@@ -80,6 +80,7 @@ public class TagWindow extends javax.swing.JFrame {
         jLabel2.setText("Tag Options");
 
         tag_root_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102)));
+        tag_root_panel.setLayout(new javax.swing.BoxLayout(tag_root_panel, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(tag_root_panel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
