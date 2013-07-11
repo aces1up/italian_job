@@ -24,7 +24,7 @@ class InspectorUiView < ApplicationView
 
       show_invisible         = show_invisible_checkbox.isSelected
 
-      root_node  = RootNode.new( transfer[:conn].root_element, show_invisible )
+      root_node  = RootNode.new( transfer[:conn], show_invisible )
       tree_model = DefaultTreeModel.new( root_node )
       inspect_jtree.setModel( tree_model )
 

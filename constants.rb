@@ -27,7 +27,8 @@ TagList = [
     :random_line_from_file
 ]
 
-DOM_Elements = [ 'form', 'input', 'textarea', 'button', 'div', 'iframe', 'frame', 'span',
+DOM_Elements = [ 'form', 'input', 'textarea', 'button', 'div', 'span',
+                     #'iframe', 'frame',
                      'label', 'select', 'option',
                      'body', 'tbody',
                      'img', 'a',

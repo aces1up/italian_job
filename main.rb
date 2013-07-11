@@ -155,6 +155,7 @@ begin
   require 'trainer/actions/trainer_action'
   require 'trainer/actions/data/click_element_t_data'
   require 'trainer/actions/data/set_element_t_data'
+  require 'trainer/actions/data/iframe_t_data'
   require 'trainer/actions/data/save_regex_t_action'
   require 'trainer/actions/data/goto_t_action'
   require 'trainer/actions/data/verify_string_t_action'

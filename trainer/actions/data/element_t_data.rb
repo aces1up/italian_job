@@ -3,7 +3,7 @@ module ElementTrainerData
 
     def trainer_data( other_data={} )
 
-        other_data.merge!( {
+        data = {
 
                   :method    =>
                   {
@@ -43,9 +43,10 @@ module ElementTrainerData
                       :ele_args        => [ :exact, :broad ],
                       :value           => :broad
                   }
-        } )
 
-        super( other_data )
+              }.merge!( other_data )
+
+        super( data )
 
     end
 end

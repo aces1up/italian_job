@@ -51,16 +51,18 @@
         }.merge!( other_data )
     end
 
-
-    def init_elements()
-
-        elements = if filter_selected?
+    def get_elements()
+        if filter_selected?
             @element.elements_for_tag_name( filter_selected, @show_invisible )
         else
             @element.children_for_element( @show_invisible )
         end
+    end
 
-        elements.each do | child_element |
+
+    def init_elements()
+      
+        get_elements.each do | child_element |
             @i_children << InspectorNode.new( child_element, @show_invisible, self )
         end
 
