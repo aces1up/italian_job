@@ -1,5 +1,7 @@
 class DashboardUiController < ApplicationController
 
+  include KillAllPhantom
+
   set_model 'DashboardUiModel'
   set_view 'DashboardUiView'
   set_close_action :exit
@@ -36,12 +38,17 @@ class DashboardUiController < ApplicationController
       model.proxy_table_model = ProxyTableHandler.new
   end
 
+  def kill_stale_phantomjs()
+      kill_phantom_js()
+  end
+
   def load()
 
       InspectorUiController.instance.reboot
       InfoUiController.instance.close
       ActionDataUiController.instance.close
       TagDataUiController.instance.close
+      kill_stale_phantomjs()
 
       model.init_test_runner
       model.action_table_model      = ActionTableHandler.new

@@ -2,6 +2,12 @@
 
 module ConnectionInitializer
 
+  def teardown_connections()
+      # tears down the connections associated with
+      # @test_thread
+      @test_thread.teardown_thread_connections if @test_thread
+  end
+
   def browser_type()
       #get browser type from the gui setting
       get_gui_element_from_handle( :connection_type_combo ).getSelectedItem.downcase.to_sym

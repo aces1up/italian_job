@@ -1,5 +1,7 @@
 class DashboardUiModel
 
+    include KillAllPhantom
+
     attr_accessor :test_runner, :action_table_model, :action_list_combo
     attr_accessor :profile_list_combo, :file_list_combo, :proxy_table_model
 
@@ -26,6 +28,8 @@ class DashboardUiModel
 
     def load_test( filename )
         @action_table_model.reset_model
+        @test_runner.teardown
+        kill_phantom_js()
         init_test_runner()
 
         return if filename == 'none'

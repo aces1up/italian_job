@@ -28,6 +28,7 @@ class TestRunner
 
   def teardown()
       #do any teardown / cleanup code before killing trainer
+      teardown_connections
   end
 
   def update()
@@ -35,6 +36,7 @@ class TestRunner
   end
 
   def start_test()
+      teardown_connections
       @test_thread = Thread.new { run_test }
   end
 
@@ -76,6 +78,7 @@ class TestRunner
   end
 
   def init_test()
+      #teardown_connections()   #<--- teardown previous test connections
       init_vars()
       init_profile()
       reset_all()

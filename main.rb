@@ -69,10 +69,6 @@ begin
   Version            = 'Italian Job 1.0.0'
   PhantomJSEXE = 'c:/temp/phantomjs.exe'
 
-  #OUR HARDWARE CLASSES
-  require 'hardware/process/process_helper'
-  require 'hardware/enviornment/enviornment_variables'
-  require 'hardware/browser/browser_helper'
   require 'thread/thread_each_pool'
 
   require 'botter'
@@ -81,6 +77,8 @@ begin
 
   #utility
   require 'util/trainer_utility'
+
+  require 'helpers/phantomjs_helper/kill_all_phantom_module'
 
 
   #our trainer exceptions
@@ -169,8 +167,7 @@ begin
   require 'trainer/test_runner'
 
 
-  DashboardUiController.instance.open
- 
+  DashboardUiController.instance.open 
 
 
 rescue => e
