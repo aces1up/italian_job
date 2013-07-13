@@ -5,7 +5,11 @@ module ConnectionInitializer
   def teardown_connections()
       # tears down the connections associated with
       # @test_thread
-      @test_thread.teardown_thread_connections if @test_thread
+      begin
+          @test_thread.teardown_thread_connections if @test_thread
+      rescue => err
+          alert_pop_err( err, 'Error Cleaning Up Previous Test Connections!' )
+      end
   end
 
   def browser_type()

@@ -109,8 +109,6 @@ begin
   require 'gui/dashboard_ui/proxy_table/proxy_table_renderer'
   require 'gui/dashboard_ui/proxy_table/proxy_jtable_handler'
 
-
-
   #jtable helpers
   require 'gui/helpers/table_helpers/jtable_getvalue_helper'
   #jtree_helpers
@@ -156,7 +154,9 @@ begin
   require 'trainer/actions/data/iframe_t_data'
   require 'trainer/actions/data/save_regex_t_action'
   require 'trainer/actions/data/goto_t_action'
+  require 'trainer/actions/data/hover_t_data'
   require 'trainer/actions/data/verify_string_t_action'
+  require 'trainer/actions/data/verify_email_t_data'
   require 'trainer/actions/data/verify_element_t_data'
 
 

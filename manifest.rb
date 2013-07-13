@@ -83,6 +83,10 @@ when Monkeybars::Resolver::IN_FILE_SYSTEM
   #Thread Safe
   $LOAD_PATH << 'C:\jruby-gem-repository\gems\thread_safe-0.0.3\lib'
 
+  #our mail
+  $LOAD_PATH << 'C:\jruby-gem-repository\gems\mail-2.5.4\lib'
+  $LOAD_PATH << 'C:\jruby-gem-repository\gems\treetop-1.4.12\lib'
+
 
 
 when Monkeybars::Resolver::IN_JAR_FILE
