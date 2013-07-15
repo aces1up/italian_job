@@ -29,6 +29,16 @@ class TrainerAction
     update()
 	end
 
+  def set_breakpoint()
+      @breakpoint = true
+      update()
+  end
+
+  def clear_breakpoint()
+      @breakpoint = false
+      update()
+  end
+
   def to_disk()
       #generates a hash for this action_data to save to disk
       init_action_obj.to_disk
@@ -68,6 +78,11 @@ class TrainerAction
 
   def run()
       #1.  initialize normal trainer object with our @data
+
+      if @breakpoint
+          set_action_status( :breakpoint )
+          return
+      end
 
       begin
            set_action_status( :running )

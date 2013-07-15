@@ -124,6 +124,7 @@ class TestRunner
 
           @trainer_actions.each do | trainer_action |
               trainer_action.run()
+              break if trainer_action.status != :success
           end
 
       rescue => err

@@ -39,6 +39,20 @@ class ActionJtableMouseListener < MouseAdapter
                 }
             },
 
+             'Set Breakpoint'       => {
+                :lam_block => lambda {
+                      obj = test_runner_obj.selected_obj
+                      obj.set_breakpoint if obj
+                }
+            },
+
+            'Clear Breakpoint'       => {
+                :lam_block => lambda {
+                      obj = test_runner_obj.selected_obj
+                      obj.clear_breakpoint if obj
+                }
+            },
+
             'Show Confirmation Email' => {
                 :lam_block => lambda {
                       if ( email_text = confirmation_email )

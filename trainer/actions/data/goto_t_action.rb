@@ -8,6 +8,7 @@ class GotoPageTrainer < TrainerAction
                   :url =>
                   {
                       :value           => '',
+                      :nil_value       => '',
                       :root_pan        => :action_data_panel,
                       :user_string     => "Enter URL to Fetch: ",
                       :render_klass    => :string,

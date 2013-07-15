@@ -59,6 +59,10 @@ class ActionTableRenderer < javax.swing.table.DefaultTableCellRenderer
                 setForeground(Color::BLACK)
                 setBackground(Color::YELLOW)
 
+            when :breakpoint
+                setForeground(Color::BLACK)
+                setBackground(Color::YELLOW)
+
             when :captcha_error
                 setForeground(Color::BLACK)
                 setBackground(Color::ORANGE)
