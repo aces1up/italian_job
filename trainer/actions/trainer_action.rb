@@ -26,8 +26,17 @@ class TrainerAction
 		@data         =   ActionGUIDataHelper.new( self.class.trainer_data, nil, init_data )    #<---- data used to init our action object
 		@action_obj   =   nil                                            #<---- the action object we are currently running
 
+    #our connection_options
+    @connection_class   = nil
+    @connection_options = {}
+
     update()
 	end
+
+  def set_global_connection_options( conn_klass, conn_options )
+      @connection_class    = conn_klass
+      @connection_options  = conn_options
+  end
 
   def set_breakpoint()
       @breakpoint = true
@@ -72,7 +81,14 @@ class TrainerAction
   end
 
   def init_action_obj()
-      @action_obj = get_constant( @action ).new( @data.all_vars_to_load_data )
+
+      init_data = @data.all_vars_to_load_data
+      #add in our connection options initialized from the test_runner
+      #object
+      init_data[:connection_class]    = @connection_class
+      init_data[:connection_options]  = @connection_options
+
+      @action_obj = get_constant( @action ).new( init_data )
       @action_obj
   end
 

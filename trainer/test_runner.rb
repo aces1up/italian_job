@@ -85,6 +85,11 @@ class TestRunner
       setup_connection()
   end
 
+  def execute_action( trainer_action )
+      trainer_action.set_global_connection_options( @connection_class, @connection_options )
+      trainer_action.run()
+  end
+
   def run_single_action()
 
       return if !selected_obj
@@ -103,7 +108,8 @@ class TestRunner
               Thread.current.init_uuid
               selected_obj.reset
               setup_connection()
-              selected_obj.run
+
+              execute_action( selected_obj )
 
           rescue => err
               alert_pop_err( err, "Run Single Action Error: ")
@@ -123,7 +129,7 @@ class TestRunner
           init_test()
 
           @trainer_actions.each do | trainer_action |
-              trainer_action.run()
+              execute_action( trainer_action )
               break if trainer_action.status != :success
           end
 

@@ -35,15 +35,10 @@ module ConnectionInitializer
       @connection_options.merge!( :browser_type => browser_type ) if browser_type != :socket
   end
 
-  def setup_inspector()
-      InspectorUiController.instance.set_model_var( :conn, current_connection_handle )
-  end
-
   def setup_connection()
 
       set_connection_class()
       setup_connection_options()
-      setup_inspector()
 
       #init the connection here
       #still need to figure out how we specify
@@ -51,7 +46,7 @@ module ConnectionInitializer
       #  :load_images
       #  :clear_cookies
 
-      init_connector()   #<--- sets up out connection mediator and
+      #init_connector()   #<--- sets up out connection mediator and
                          #<--- starting connection from our botter
                          #<--- connection wrapper module
 

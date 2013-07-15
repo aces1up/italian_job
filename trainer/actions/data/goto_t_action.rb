@@ -22,12 +22,21 @@ class GotoPageTrainer < TrainerAction
                       :value           => false
                   },
 
-                  :load_images =>
+                  :use_images =>
                   {
                       :root_pan        => :action_data_panel,
                       :user_string     => "Load Images? ",
                       :render_klass    => :trueclass,
                       :value           => false
+                  },
+
+                  :user_agent =>
+                  {
+                      :root_pan        => :action_data_panel,
+                      :user_string     => "Set Custom User Agent: ",
+                      :render_klass    => :string,
+                      :value           => false,
+                      :nil_value       => ''
                   }
                }
     

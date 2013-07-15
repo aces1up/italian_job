@@ -1,11 +1,8 @@
 class InspectorUiModel
 
-    attr_accessor :conn, :filter_combo
+    attr_accessor :filter_combo
 
-    def initialize()
-        @conn = nil    #<--- this is the connection handle the jtree is rendering
-                       #<--- current elements for.
-
+    def initialize()        
         @filter_combo = nil
     end
 
