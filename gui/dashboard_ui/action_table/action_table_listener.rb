@@ -14,6 +14,13 @@ class ActionJtableMouseListener < MouseAdapter
         test_runner_obj.set_selected( sel_row )
     end
 
+    def confirmation_email()
+        #retrieves the confirmation email
+        obj = test_runner_obj
+        return nil if ( !obj or !obj.test_thread or !obj.test_thread.has_var_mediator? )
+        obj.test_thread.get_var( :email_text )
+    end
+
     def menu()
         {
             'Edit Action Data' => {
@@ -29,6 +36,16 @@ class ActionJtableMouseListener < MouseAdapter
                 :lam_block => lambda {
                       obj = test_runner_obj.selected_obj
                       obj.render_log if obj
+                }
+            },
+
+            'Show Confirmation Email' => {
+                :lam_block => lambda {
+                      if ( email_text = confirmation_email )
+                           DashboardUiController.instance.show_log( email_text )
+                      else
+                           alert_pop( 'No Confirmation Email Currently Stored!' )
+                      end
                 }
             }
         }

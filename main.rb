@@ -153,9 +153,12 @@ begin
   require 'trainer/actions/data/set_element_t_data'
   require 'trainer/actions/data/iframe_t_data'
   require 'trainer/actions/data/save_regex_t_action'
+  require 'trainer/actions/data/save_email_var_t_data'
+  require 'trainer/actions/data/save_variable_t_data'
   require 'trainer/actions/data/goto_t_action'
   require 'trainer/actions/data/hover_t_data'
   require 'trainer/actions/data/verify_string_t_action'
+  require 'trainer/actions/data/save_element_attribute_data'
   require 'trainer/actions/data/verify_email_t_data'
   require 'trainer/actions/data/verify_element_t_data'
 
