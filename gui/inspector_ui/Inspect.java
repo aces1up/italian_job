@@ -45,7 +45,7 @@ public class Inspect extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inspector");
 
-        inspect_jtree.setFont(new java.awt.Font("Tahoma", 0, 14));
+        inspect_jtree.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         inspect_jtree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(inspect_jtree);
@@ -55,16 +55,16 @@ public class Inspect extends javax.swing.JFrame {
         refresh_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         refresh_button.setText("Refresh");
 
-        show_screenshot.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        show_screenshot.setFont(new java.awt.Font("Tahoma", 0, 14));
         show_screenshot.setText("Show ScreenShot");
 
-        show_invisible_checkbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        show_invisible_checkbox.setFont(new java.awt.Font("Tahoma", 0, 14));
         show_invisible_checkbox.setText("Show Invisible");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Filter:");
 
-        filter_combo_box.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        filter_combo_box.setFont(new java.awt.Font("Tahoma", 0, 14));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,7 +89,7 @@ public class Inspect extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(show_screenshot)
-                    .addComponent(refresh_button, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refresh_button)
                     .addComponent(jLabel2)
                     .addComponent(filter_combo_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(show_invisible_checkbox))

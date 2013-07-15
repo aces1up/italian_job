@@ -134,7 +134,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="show_screenshot" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="refresh_button" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="refresh_button" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="filter_combo_box" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="show_invisible_checkbox" alignment="3" min="-2" max="-2" attributes="0"/>
