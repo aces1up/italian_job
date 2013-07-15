@@ -124,13 +124,13 @@ public class Dash extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel2.setText("Default Connection Options");
 
-        connection_type_combo.setFont(new java.awt.Font("Tahoma", 0, 14));
-        connection_type_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Phantomjs", "IE", "Firefox", "Chrome", "Socket" }));
+        connection_type_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        connection_type_combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Phantomjs", "Firefox", "Socket" }));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14));
         jLabel3.setText("Connection Type");
 
-        use_proxies_checkbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        use_proxies_checkbox.setFont(new java.awt.Font("Tahoma", 0, 14));
         use_proxies_checkbox.setSelected(true);
         use_proxies_checkbox.setText("Use Proxies");
 
@@ -301,7 +301,7 @@ public class Dash extends javax.swing.JFrame {
 
         dashboard_tabbed_pane.addTab("Log", jPanel4);
 
-        proxy_table.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        proxy_table.setFont(new java.awt.Font("Tahoma", 0, 14));
         proxy_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},

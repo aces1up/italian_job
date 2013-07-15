@@ -23,15 +23,16 @@ require 'manifest'
 # Set up global error handling so that it is consistantly logged or outputed
 # You will probably want to replace the puts with your application's logger
 def show_error_dialog_and_exit(exception, thread=nil)
-  puts "Error in application"
-  puts "#{exception.class} - #{exception}"
+  alert_pop "Fatal Error in application"
+  #puts "#{exception.class} - #{exception}"
+  alert_pop "#{exception.class}"
   if exception.kind_of? Exception
-    puts exception.backtrace.join("\n")
+    alert_pop exception.backtrace.join("\n")
   else
     # Workaround for JRuby issue #2673, getStackTrace returning an empty array
     output_stream = java.io.ByteArrayOutputStream.new
     exception.printStackTrace(java.io.PrintStream.new(output_stream))
-    puts output_stream.to_string
+    alert_pop output_stream.to_string
   end
 
   # Your error handling code goes here
@@ -41,7 +42,7 @@ def show_error_dialog_and_exit(exception, thread=nil)
   message = "The application has encountered an error and must shut down."
   
   javax.swing.JOptionPane.show_message_dialog(nil, message, title, javax.swing.JOptionPane::DEFAULT_OPTION)
-  java.lang.System.exit(0)
+  #java.lang.System.exit(0)
 end
 GlobalErrorHandler.on_error {|exception, thread| show_error_dialog_and_exit(exception, thread) }
 

@@ -82,7 +82,8 @@ class DashboardUiController < ApplicationController
 
   def close()
       teardown()
-      super()
+      java.lang.System.exit(0)
+      #super()
   end
 
   def inspector_menu_item_action_performed()

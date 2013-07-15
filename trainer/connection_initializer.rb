@@ -37,18 +37,11 @@ module ConnectionInitializer
 
   def setup_connection()
 
+      #these connection options setup the global options
+      #which are loaded during the action initialization
+
       set_connection_class()
       setup_connection_options()
-
-      #init the connection here
-      #still need to figure out how we specify
-      #specific connection options like
-      #  :load_images
-      #  :clear_cookies
-
-      #init_connector()   #<--- sets up out connection mediator and
-                         #<--- starting connection from our botter
-                         #<--- connection wrapper module
 
   end
 

@@ -33,10 +33,11 @@ class GotoPageTrainer < TrainerAction
                   :user_agent =>
                   {
                       :root_pan        => :action_data_panel,
-                      :user_string     => "Set Custom User Agent: ",
+                      :user_string     => "Set Custom Browser User Agent: ",
                       :render_klass    => :string,
                       :value           => false,
-                      :nil_value       => ''
+                      :nil_value       => '',
+                      :pan_y           => 50
                   }
                }
     
