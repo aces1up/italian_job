@@ -22,6 +22,9 @@ TagList = [
     :first_name, :last_name, :fullname,
     :day_index, :year_index, :month_index, :age, 
     :bio_summary,
+
+    #Content Tags
+    :article_title, :article_text,
     
     #file handling
     :random_line_from_file

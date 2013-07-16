@@ -7,7 +7,7 @@ class DashboardUiController < ApplicationController
   set_close_action :exit
 
   def init_actions_combo()
-      trainer_actions = TrainerAction.subclasses.map{ |klass| klass.to_s.gsub('Trainer','')  }
+      trainer_actions = TrainerAction.subclasses.map{ |klass| klass.to_s.gsub('Trainer','')  }.sort
       model.action_list_combo = ComboBoxHelper.new( {:gui_element => :action_list_combo, :clear => true, :selected => 'GotoPage', :options => trainer_actions} )
   end
 
