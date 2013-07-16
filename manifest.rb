@@ -21,7 +21,7 @@ require 'resolver'
 
 case Monkeybars::Resolver.run_location
 when Monkeybars::Resolver::IN_FILE_SYSTEM
-  add_to_classpath '../lib/java/monkeybars-1.0.2.jar'
+  add_to_classpath '../lib/java/monkeybars-1.0.4.jar'
 end
 
 require 'monkeybars'
@@ -59,6 +59,10 @@ when Monkeybars::Resolver::IN_FILE_SYSTEM
   $LOAD_PATH << 'C:\jruby-gem-repository\gems\multi_json-1.3.6\lib'
   $LOAD_PATH << 'C:\jruby-gem-repository\gems\rubyzip-0.9.9\lib'
 
+
+  #our Jruby-openssl Hopefully compatible with
+  #latest jruby_complete Version
+  #$LOAD_PATH << 'C:\jruby-gem-repository\gems\jruby-openssl-0.8.8\lib\shared'
 
   #MECHANIZE REQUIRES
   $LOAD_PATH << 'C:\jruby-gem-repository\gems\nokogiri-1.5.0-java\lib'

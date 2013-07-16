@@ -1,16 +1,29 @@
 module Monkeybars
   class Resolver
+
     IN_FILE_SYSTEM = :in_file_system
-    IN_JAR_FILE = :in_jar_file
-    
+    IN_JAR_FILE    = :in_jar_file
+    IN_RAKE_FILE   = :in_rake_file
+    IN_WEB_START   = :in_web_start
+
     # Returns a const value indicating if the currently executing code is being run from the file system or from within a jar file.
     def self.run_location
-      if File.expand_path(__FILE__) =~ /\.jar\!/
-        IN_JAR_FILE
-      else
-        IN_FILE_SYSTEM
+
+      if defined?(RAKE_RUN)
+        return IN_RAKE_FILE
       end
+
+      if File.expand_path(__FILE__) =~ /\.jar\!/
+         return IN_WEB_START
+      end
+
+      if File.expand_path(__FILE__).to_s.include?('resolver.class') then
+         return IN_WEB_START
+      end
+
+      IN_FILE_SYSTEM
     end
+    
   end
 end
 

@@ -23,16 +23,15 @@ require 'manifest'
 # Set up global error handling so that it is consistantly logged or outputed
 # You will probably want to replace the puts with your application's logger
 def show_error_dialog_and_exit(exception, thread=nil)
-  alert_pop "Fatal Error in application"
-  #puts "#{exception.class} - #{exception}"
-  alert_pop "#{exception.class}"
+  puts "Error in application"
+  puts "#{exception.class} - #{exception}"
   if exception.kind_of? Exception
-    alert_pop exception.backtrace.join("\n")
+    puts exception.backtrace.join("\n")
   else
     # Workaround for JRuby issue #2673, getStackTrace returning an empty array
     output_stream = java.io.ByteArrayOutputStream.new
     exception.printStackTrace(java.io.PrintStream.new(output_stream))
-    alert_pop output_stream.to_string
+    puts output_stream.to_string
   end
 
   # Your error handling code goes here
