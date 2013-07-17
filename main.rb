@@ -17,6 +17,30 @@ end
 
 # End of platform specific code
 #===============================================================================
+
+  def init_output_format()
+
+      if STOUT_To_File then
+        #redirect standard output to file
+        $stdout = File.new("#{$working_directory}stdout.txt", 'w+')
+        $stderr = File.new("#{$working_directory}sterr.txt", 'w+')
+
+        #$stdout = File.open( "NUL", 'w' )
+        #$stderr = File.open( "NUL", 'w' )
+
+      end
+  end
+
+  $working_directory = 'c:/lwb-trainer/'
+  $display_gui       = true
+  Version            = 'Italian Job 1.0.0'
+  STOUT_To_File      = true
+  PhantomJSEXE = "#{$working_directory}dependencies/phantomjs.exe"
+
+  FileUtils.mkdir( $working_directory ) if !File.directory?( $working_directory )
+  init_output_format()
+
+
 $LOAD_PATH << File.expand_path(File.dirname(__FILE__))
 require 'manifest'
 
@@ -48,6 +72,12 @@ GlobalErrorHandler.on_error {|exception, thread| show_error_dialog_and_exit(exce
 begin
   # Your application code goes here
 
+  require 'fileutils'
+
+  #set look and feel here
+  #java_import javax.swing.UIManager
+  #javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+
   java_import javax.swing.tree.DefaultMutableTreeNode
   java_import javax.swing.JTree
   java_import javax.swing.tree.DefaultTreeModel
@@ -62,17 +92,8 @@ begin
   java_import javax.swing.JFileChooser
   java_import javax.swing.filechooser.FileSystemView
 
-
-  
-  $working_directory = 'c:/lwb-trainer/'
-  $display_gui       = true
-  Version            = 'Italian Job 1.0.0'
-  PhantomJSEXE = 'c:/temp/phantomjs.exe'
-
   require 'thread/thread_each_pool'
-
   require 'botter'
-
   require 'constants'
 
   #utility
@@ -122,8 +143,20 @@ begin
   require 'gui/dashboard_ui/action_table/action_table_model'
 
   require 'gui/inspector_ui/inspector_ui_controller'
+  require 'gui/inspector_ui/inspector_ui_model'
+  require 'gui/inspector_ui/inspector_ui_view'
+
+
   require 'gui/action_data_ui/action_data_ui_controller'
+  require 'gui/action_data_ui/action_data_ui_model'
+  require 'gui/action_data_ui/action_data_ui_view'
+
+
   require 'gui/tag_data_ui/tag_data_ui_controller'
+  require 'gui/tag_data_ui/tag_data_ui_model'
+  require 'gui/tag_data_ui/tag_data_ui_view'
+
+
   require 'gui/tag_data_ui/tag_handlers/default_tag_handler'
   require 'gui/tag_data_ui/tag_handlers/captcha_tag_handler'
   require 'gui/tag_data_ui/tag_handlers/rand_file_line_tag_handler'
@@ -131,9 +164,15 @@ begin
 
 
   require 'gui/dashboard_ui/dashboard_ui_controller'
+  require 'gui/dashboard_ui/dashboard_ui_model'
+  require 'gui/dashboard_ui/dashboard_ui_view'
+
 
   #our info_ui Requires
   require 'gui/info_ui/info_ui_controller'
+  require 'gui/info_ui/info_ui_model'
+  require 'gui/info_ui/info_ui_view'
+
   require 'gui/info_ui/var_jtree/var_jtree_container_node'
   require 'gui/info_ui/var_jtree/var_jtree_variable_node'
   require 'gui/info_ui/var_jtree/var_jtree_root_node'
@@ -170,7 +209,7 @@ begin
   require 'trainer/test_runner'
 
 
-  DashboardUiController.instance.open 
+  DashboardUiController.instance.open
 
 
 rescue => e

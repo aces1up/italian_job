@@ -19,14 +19,18 @@ end
 
 require 'resolver'
 
+puts "Run Location: #{Monkeybars::Resolver.run_location.inspect}"
+
 case Monkeybars::Resolver.run_location
 when Monkeybars::Resolver::IN_FILE_SYSTEM
   add_to_classpath '../lib/java/monkeybars-1.0.4.jar'
 end
 
-require 'monkeybars'
-require 'application_controller'
-require 'application_view'
+def do_monkeybars_require()
+    require 'monkeybars'
+    require 'application_controller'
+    require 'application_view'
+end
 
 # End of Monkeybars requires
 #===============================================================================
@@ -47,52 +51,71 @@ require 'application_view'
 # add_to_load_path "../lib/java"
 #
 
-case Monkeybars::Resolver.run_location
-when Monkeybars::Resolver::IN_FILE_SYSTEM
+def do_in_file_system
   # Files to be added only when running from the file system go here
 
   #Watir WebDriver Load Paths
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\watir-webdriver-0.6.4\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\selenium-webdriver-2.33.0\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\childprocess-0.3.9\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\multi_json-1.3.6\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\multi_json-1.3.6\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\rubyzip-0.9.9\lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/watir-webdriver-0.6.4/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/selenium-webdriver-2.33.0/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/childprocess-0.3.9/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/multi_json-1.3.6/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/multi_json-1.3.6/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/rubyzip-0.9.9/lib'
 
 
   #our Jruby-openssl Hopefully compatible with
   #latest jruby_complete Version
-  #$LOAD_PATH << 'C:\jruby-gem-repository\gems\jruby-openssl-0.8.8\lib\shared'
+  #$LOAD_PATH << 'C:/jruby-gem-repository/gems/jruby-openssl-0.8.8/lib/shared'
 
   #MECHANIZE REQUIRES
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\nokogiri-1.5.0-java\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\net-http-persistent-2.8\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\domain_name\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\mechanize-2.5.1\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\multipart_body\lib'
-  $LOAD_PATH << 'c:\jruby-gem-repository\gems\net-http-digest_auth-1.1.1\lib'
-  $LOAD_PATH << 'c:\jruby-gem-repository\gems\addressable-2.2.6\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\mime-types-1.18\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\unf-0.0.5-java\lib'
-  $LOAD_PATH << 'c:\jruby-gem-repository\gems\ntlm-http-0.1.1\lib'
-  $LOAD_PATH << 'c:\jruby-gem-repository\gems\webrobots\lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/nokogiri-1.5.0-java/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/net-http-persistent-2.8/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/domain_name/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/mechanize-2.5.1/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/multipart_body/lib'
+  $LOAD_PATH << 'c:/jruby-gem-repository/gems/net-http-digest_auth-1.1.1/lib'
+  $LOAD_PATH << 'c:/jruby-gem-repository/gems/addressable-2.2.6/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/mime-types-1.18/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/unf-0.0.5-java/lib'
+  $LOAD_PATH << 'c:/jruby-gem-repository/gems/ntlm-http-0.1.1/lib'
+  $LOAD_PATH << 'c:/jruby-gem-repository/gems/webrobots/lib'
 
   #easy Rider
-  #$LOAD_PATH << 'C:\jruby-gem-repository\gems\easyrider-0.0.1\lib'
-  $LOAD_PATH << 'C:\Ruby Code\easy_rider\lib'
+  #$LOAD_PATH << 'C:/jruby-gem-repository/gems/easyrider-0.0.1/lib'
+  $LOAD_PATH << 'C:/Ruby Code/easy_rider/lib'
 
   #bot framework load path
   $LOAD_PATH << 'C:/Ruby Code/bot_framework_gem/lib'
 
   #Thread Safe
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\thread_safe-0.0.3\lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/thread_safe-0.0.3/lib'
 
   #our mail
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\mail-2.5.4\lib'
-  $LOAD_PATH << 'C:\jruby-gem-repository\gems\treetop-1.4.12\lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/mail-2.5.4/lib'
+  $LOAD_PATH << 'C:/jruby-gem-repository/gems/treetop-1.4.12/lib'
+end
 
 
+case Monkeybars::Resolver.run_location
 
-when Monkeybars::Resolver::IN_JAR_FILE
-  # Files to be added only when run from inside a jar file
+    when Monkeybars::Resolver::IN_FILE_SYSTEM
+      do_monkeybars_require()
+      do_in_file_system()
+
+    when Monkeybars::Resolver::IN_RAKE_FILE
+      do_in_file_system()
+
+    when Monkeybars::Resolver::IN_JAR_FILE
+      # Files to be added only when run from inside a jar file
+
+    when Monkeybars::Resolver::IN_WEB_START
+      # Files to be added only when run from inside java web_start
+      puts "Processing WebStart Manifest"
+      do_monkeybars_require
+
+
+      #hardware stuff\
+      #$LOAD_PATH << "#{$working_directory}dependancies/jruby-win32ole-0.8.3/lib"
+      #POlterGeist
+      #$LOAD_PATH << "#{$working_directory}dependancies/poltergeist-1.7.0/lib"
 end

@@ -4,10 +4,13 @@ module TrainerActionGUIHelper
     #gui handling stuff
 
     def update()
-      DashboardUiController.instance.get_model_var( :action_table_model ).update
+        DashboardUiController.instance.get_model_var( :action_table_model ).update
     end
 
     def update_msg( msg_output, log_level, thread )
+
+      #receives log messages from our log handler
+      #in the bot framework gem
 
       @output = msg_output
       @log   += "#{msg_output}\n"
