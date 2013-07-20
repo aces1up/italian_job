@@ -31,9 +31,11 @@ end
       end
   end
 
+  require 'fileutils'
+
   $working_directory = 'c:/lwb-trainer/'
   $display_gui       = true
-  Version            = 'Italian Job 1.0.0'
+  Version            = 'Italian Job 1.0.4'
   STOUT_To_File      = true
   PhantomJSEXE = "#{$working_directory}dependencies/phantomjs.exe"
 
@@ -72,7 +74,6 @@ GlobalErrorHandler.on_error {|exception, thread| show_error_dialog_and_exit(exce
 begin
   # Your application code goes here
 
-  require 'fileutils'
 
   #set look and feel here
   #java_import javax.swing.UIManager
@@ -93,11 +94,27 @@ begin
   java_import javax.swing.filechooser.FileSystemView
 
   require 'thread/thread_each_pool'
-  require 'botter'
-  require 'constants'
 
   #utility
   require 'util/trainer_utility'
+
+  #our gui Requires
+  require 'gui/helpers/monkeybars/monkeybars_helpers'
+  require 'gui/helpers/progress_bar_helper/progress_bar_helper_class'
+
+
+  #our Splash Screen
+  require 'gui/splash_ui/splash_ui_controller'
+  require 'gui/splash_ui/splash_ui_model'
+  require 'gui/splash_ui/splash_ui_view'
+
+  DownloaderLogHandler = SplashUiController.instance
+  SplashUiController.instance.open
+
+  SplashUiController.instance.update_msg('Loading Bot FrameWork..')
+  require 'botter'
+  SplashUiController.instance.update_msg('Loading Constants...')
+  require 'constants'
 
   require 'helpers/phantomjs_helper/kill_all_phantom_module'
 
@@ -108,10 +125,8 @@ begin
   #our Proxy Extensions
   require 'cache/proxy/proxy_cache_patches'
 
-  #our gui Requires
 
-  require 'gui/helpers/monkeybars/monkeybars_helpers'
-
+  SplashUiController.instance.update_msg('Loading GUI...')
   #Gui Generator Helper
   require 'gui/helpers/gui_generator/gui_item/value_converter'
   require 'gui/helpers/gui_generator/gui_item/gui_item_focus_setter'
@@ -208,7 +223,7 @@ begin
   require 'trainer/profile_initializer'
   require 'trainer/test_runner'
 
-
+  SplashUiController.instance.close
   DashboardUiController.instance.open
 
 

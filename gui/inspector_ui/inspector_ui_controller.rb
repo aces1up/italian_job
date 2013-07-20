@@ -15,7 +15,7 @@ class InspectorUiController < ApplicationController
   include BrowserWindow
   
   def init_filter_combo()
-      filter_options = DOM_Elements ; filter_options.unshift( 'none' )
+      filter_options = DOM_Elements.dup ; filter_options.unshift( 'none' )
       model.filter_combo = ComboBoxHelper.new( {:gui_element => :filter_combo_box, :clear => true, :selected => 'none', :options => filter_options} )
   end
 

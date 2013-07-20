@@ -27,11 +27,13 @@ class DashboardUiModel
     end
 
     def load_test( filename )
-        @action_table_model.reset_model
+
         @test_runner.teardown
         kill_phantom_js()
         init_test_runner()
 
+        @action_table_model.reset_model
+        
         return if filename == 'none'
         @test_runner.load_test( filename )
     end
@@ -66,7 +68,8 @@ class DashboardUiModel
               save_file = get_save_file_from_chooser( directory ) if !overwrite
         end
 
-        save_file.gsub('\\', '/').downcase
+        save_file.gsub('\\', '/').downcase if save_file
+        save_file
 
     end
 

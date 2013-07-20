@@ -67,6 +67,14 @@ class ActionTableRenderer < javax.swing.table.DefaultTableCellRenderer
                 setForeground(Color::BLACK)
                 setBackground(Color::ORANGE)
 
+            when :major_fatal
+                setForeground(Color::WHITE)
+                setBackground(Color::BLUE)
+
+            when :fatal
+                setForeground(Color::WHITE)
+                setBackground(Color::BLUE)
+
         else
             render_default
         end

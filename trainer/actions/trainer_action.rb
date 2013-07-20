@@ -5,7 +5,7 @@ class TrainerAction
 	# handles rendering of trainer data
 	# and running of the action obj attached to this trainer object
 
-  extend DefaultTrainerData
+  extend  DefaultTrainerData
   include BotFrameWorkModules
   include TrainerActionGUIHelper
 
@@ -50,7 +50,7 @@ class TrainerAction
 
   def to_disk()
       #generates a hash for this action_data to save to disk
-      init_action_obj.to_disk
+      init_action_obj(true).to_disk
   end
 
   def import( data={} )
@@ -80,16 +80,17 @@ class TrainerAction
       set_action_status( :idle )
   end
 
-  def init_action_obj()
+  def init_action_obj( is_saving=false )
 
       init_data = @data.all_vars_to_load_data
       #add in our connection options initialized from the test_runner
       #object
-      init_data[:connection_class]    = @connection_class
-      init_data[:connection_options]  = @connection_options
+      init_data[:connection_class]    = @connection_class    if !is_saving
+      init_data[:connection_options]  = @connection_options  if !is_saving
 
-      @action_obj = get_constant( @action ).new( init_data )
+      @action_obj = get_constant( @action ).new( init_data, !is_saving )
       @action_obj
+      
   end
 
   def run()
@@ -124,7 +125,15 @@ class TrainerAction
 
       rescue => err
 
-          alert_pop_err( err, 'Fatal Trainer Action Run Error' )
+          #FatalAppError.new( err, err.backtrace )
+          fatal("Fatal Error -- Class: #{err.class.to_s}")
+          err_new = FatalAppError.new( err.message )
+          err_new.set_backtrace( err.backtrace )
+          err_new.report
+          self[:status] = :major_fatal
+          set_status_from_enviornment()
+
+          #alert_pop_err( err, 'Fatal Trainer Action Run Error' )
 
       ensure
           @has_run = true
