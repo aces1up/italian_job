@@ -25,7 +25,9 @@ class TagDataUiModel
     def tag_handler_klass()
         #gets the tag_handler class for our
         #current @tag_selected
-        get_constant( "#{@tag_selected.to_s.gsub('_','').capitalize}TagHandler" )
+        handler_klass = get_constant( "#{@tag_selected.to_s.gsub('_','').capitalize}TagHandler" )
+        handler_klass ||= TagHandler
+        handler_klass
     end
 
     def init_tag_data( init_data )

@@ -35,7 +35,7 @@ end
 
   $working_directory = 'c:/lwb-trainer/'
   $display_gui       = true
-  Version            = 'Italian Job 1.0.4'
+  Version            = 'Italian Job 1.0.5'
   STOUT_To_File      = true
   PhantomJSEXE = "#{$working_directory}dependencies/phantomjs.exe"
 
