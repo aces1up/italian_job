@@ -1,6 +1,4 @@
 
-
-
 class ActionTableHandler < javax.swing.table.DefaultTableModel
 
   include GetValueAtHelperModule

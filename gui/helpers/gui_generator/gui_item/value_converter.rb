@@ -24,7 +24,11 @@ module ValueConveter
       end
 
       def from_gui_to_array()
-          @value = @value.split( "\n" )
+          if @var_args[:convert_to_string]
+              @value  #<--- return @value as it should be string here
+          else
+              @value = @value.split( "\n" )
+          end
       end
 
       def value_to_gui_textbox()

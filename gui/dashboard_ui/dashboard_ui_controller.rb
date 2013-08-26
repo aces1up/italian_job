@@ -1,6 +1,6 @@
 class DashboardUiController < ApplicationController
 
-  include KillAllPhantom
+  include HardwareHelper
 
   set_model 'DashboardUiModel'
   set_view 'DashboardUiView'

@@ -50,7 +50,7 @@ class TrainerAction
 
   def to_disk()
       #generates a hash for this action_data to save to disk
-      init_action_obj(true).to_disk
+      init_action_obj( true ).to_disk
   end
 
   def import( data={} )

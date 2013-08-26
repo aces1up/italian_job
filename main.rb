@@ -35,9 +35,8 @@ end
 
   $working_directory = 'c:/lwb-trainer/'
   $display_gui       = true
-  Version            = 'Italian Job 1.0.5'
+  Version            = 'Italian Job 1.0.6'
   STOUT_To_File      = true
-  PhantomJSEXE = "#{$working_directory}dependencies/phantomjs.exe"
 
   FileUtils.mkdir( $working_directory ) if !File.directory?( $working_directory )
   init_output_format()
@@ -116,9 +115,6 @@ begin
   SplashUiController.instance.update_msg('Loading Constants...')
   require 'constants'
 
-  require 'helpers/phantomjs_helper/kill_all_phantom_module'
-
-
   #our trainer exceptions
   require 'exceptions/trainer_exceptions'
 
@@ -141,12 +137,14 @@ begin
   require 'gui/helpers/combobox_helper'
   require 'gui/helpers/filechooserhelper/file_chooser_helper'
 
+  #jtable helpers
+  require 'gui/helpers/table_helpers/jtable_getvalue_helper'
+
   #Our Proxy GUI TAble
   require 'gui/dashboard_ui/proxy_table/proxy_table_renderer'
   require 'gui/dashboard_ui/proxy_table/proxy_jtable_handler'
 
-  #jtable helpers
-  require 'gui/helpers/table_helpers/jtable_getvalue_helper'
+  
   #jtree_helpers
   require 'gui/helpers/jtree_helpers/jtree_render_hash_helper/jtree_hash_default_node'
   #menu Helpers
@@ -205,14 +203,20 @@ begin
   require 'trainer/actions/trainer_action'
   require 'trainer/actions/data/click_element_t_data'
   require 'trainer/actions/data/set_element_t_data'
+  require 'trainer/actions/data/select_list_t_data'
   require 'trainer/actions/data/iframe_t_data'
+  require 'trainer/actions/data/drag_and_drop_t_data'
   require 'trainer/actions/data/save_regex_t_action'
   require 'trainer/actions/data/save_email_var_t_data'
   require 'trainer/actions/data/save_variable_t_data'
   require 'trainer/actions/data/goto_t_action'
   require 'trainer/actions/data/hover_t_data'
+  require 'trainer/actions/data/modify_variable_t_data'
+  require 'trainer/actions/data/raw_post_t_data'
   require 'trainer/actions/data/verify_string_t_action'
   require 'trainer/actions/data/save_element_attribute_data'
+  require 'trainer/actions/data/save_cookie-t_data'
+  require 'trainer/actions/data/save_raw_post_variable_t_data'
   require 'trainer/actions/data/verify_email_t_data'
   require 'trainer/actions/data/verify_element_t_data'
 
@@ -224,7 +228,10 @@ begin
   require 'trainer/test_runner'
 
   SplashUiController.instance.close
+  
   DashboardUiController.instance.open
+
+
 
 
 rescue => e

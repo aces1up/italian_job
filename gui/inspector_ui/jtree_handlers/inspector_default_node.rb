@@ -39,15 +39,29 @@
                 val = get_info_dialog( 'Set Element', 'Enter Value to Set on Element: ' )
                 if val ; @element.set( val ) end
              },
+            'Set Key'        => lambda {
+                val = get_info_dialog( 'Send Key to Element', 'Enter Key to Send to Element: ' )
+                if val ; @element.set_key( val ) end
+             },
+
+             'Fire Event'        => lambda {
+                val = get_info_dialog( 'Fire Event on Element', 'Enter event to Send to element: ' )
+                if val ; @element.fire_event( val ) end
+             },
             'Hover on Element'     => lambda { @element.hover },
             'Hover On Element JS'  => lambda { @element.hover_js },
+            'Focus'                => lambda { @element.focus },
             'Flash Element'        => lambda {
                 num_times = get_info_dialog( 'Flash Element', 'Enter Number of Times to Flash Element: ' )
                 interval  = get_info_dialog( 'Flash Element', 'Enter Interval Between Flashes: ' )
                 if num_times and interval
                   @element.flash( num_times, interval )
                 end
-            }
+            },
+
+            'Set Drag From'       => lambda { $from = @element },
+            'Drag to'             => lambda { $from.drag_to @element }
+            
         }.merge!( other_data )
     end
 

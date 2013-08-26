@@ -4,7 +4,7 @@ module InspectorMenuHandler
 
     def generate_menu()
 
-        do_not_run_in_thread_menus = [ 'Click Element', 'Set Element' ]
+        do_not_run_in_thread_menus = [ 'Click Element', 'Set Element', 'Focus', 'Set Key', 'Fire Event' ]
 
         @menu ||= (
           

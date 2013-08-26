@@ -29,7 +29,11 @@ TagList = [
     :article_title, :article_text,
     
     #file handling
-    :random_line_from_file
+    :random_line_from_file,
+    
+    #cookie Handling 
+    :cookie_string
+
 ]
 
 DOM_Elements = [ 'form', 'input', 'textarea', 'button', 'div', 'span',

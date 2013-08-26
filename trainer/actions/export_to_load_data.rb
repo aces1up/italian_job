@@ -55,10 +55,11 @@ module ExportToLoadData
 
         all_vars.each do |var_name, var_args|
 
-            value = if var_args.is_a?( Hash )
+            value = if var_args.is_a?( Hash ) 
                 #we have a hash meaning we have tag data available
                 #so we need to parse a string for the tag_data for
                 #it to load properly in the action
+
                 var_args_to_str( var_args )
             else
                 var_args
@@ -67,6 +68,7 @@ module ExportToLoadData
             vars[var_name] = value
 
         end
+
         vars
     end
 

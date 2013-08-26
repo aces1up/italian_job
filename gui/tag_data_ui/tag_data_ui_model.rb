@@ -60,7 +60,7 @@ class TagDataUiModel
     end
 
     def export_data()
-        { @tag_selected => @tag_data.all_vars }
+        @tag_data.all_vars.delete_if{ |var, value| value.nil? }
     end
 
     def export_tag_data()
@@ -68,7 +68,7 @@ class TagDataUiModel
         #focused action data and
         if @tag_data
             @tag_data.save
-            action_data_container.import_tag_data( action_data_container.focused, export_data )
+            action_data_container.import_tag_data( action_data_container.focused, @tag_selected, export_data )
         end
     end
 

@@ -82,7 +82,7 @@ def do_in_file_system
 
   #easy Rider
   #$LOAD_PATH << 'C:/jruby-gem-repository/gems/easyrider-0.0.1/lib'
-  $LOAD_PATH << 'C:/Ruby Code/easy_rider/lib'
+  $LOAD_PATH << 'C:/Ruby Code/easy_rider-1.0.0/lib'
 
   #bot framework load path
   $LOAD_PATH << 'C:/Ruby Code/bot_framework_gem/lib'

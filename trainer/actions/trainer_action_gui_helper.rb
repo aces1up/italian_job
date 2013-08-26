@@ -42,13 +42,23 @@ class ActionGUIDataHelper < GUIContainer
     #assists with handling tag args and data
     #from the tag options window
 
-    def import_tag_data( var_name, data={} )
+    def import_tag_data( var_name, tag, tag_data={} )
         # adds a :tag_data field to the var_args for specified var_name
         # format for :tag_data
         #   :tag => tag_args => {}
         return if !@gui_elements[var_name]
+
         @gui_elements[var_name][:tag_data] ||= {}
-        @gui_elements[var_name][:tag_data].merge! data
+
+        if !tag_data.empty?
+             @gui_elements[var_name][:tag_data][tag] ||= {}
+             @gui_elements[var_name][:tag_data][tag].merge!( tag_data )
+        else
+            #delete the tag from the tag_data if it doesn't have
+            #any data associated with it.
+            @gui_elements[var_name][:tag_data].delete( tag )
+        end
+
     end
 
     def value_has_tags?( val )
@@ -61,6 +71,7 @@ class ActionGUIDataHelper < GUIContainer
         vars = {}
 
         @gui_elements.each do |var_name, var_args|
+
 
             value = case
 

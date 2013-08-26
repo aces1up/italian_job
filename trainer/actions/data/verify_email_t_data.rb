@@ -41,6 +41,14 @@ class VerifyEmailTrainer < TrainerAction
                       #initial value, min, max, step
                       :ele_args        => [ 1, 1, 60, 1 ],
                       :value           => 15
+                  },
+
+                  :decode_email   =>
+                  {
+                      :root_pan        => :action_data_panel,
+                      :user_string     => "Decode Email? ",
+                      :render_klass    => :trueclass,
+                      :value           => false
                   }
 
                }

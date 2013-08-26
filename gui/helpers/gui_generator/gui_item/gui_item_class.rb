@@ -30,7 +30,7 @@ class GUIItem
         @var_args         = var_args
         @root_pan         = var_args[:root_pan]     ||   nil
         @render_klass     = var_args[:render_klass] ||   nil   #<---  will be :textarea, :button, :spinner, etc..etc..
-        @auto_resize      = var_args[:auto_resize]  ||   true
+        @auto_resize      = var_args[:auto_resize] == false ? false : true
         @value            = var_args[:value]        ||   nil   #<---  the vaue retrieved from the gui_element
 
         @swing_klass      = nil            #<---  the swing klass of gui_element
@@ -160,7 +160,7 @@ class GUIItem
     #our info and rendering methods
 
     def has_nil_value?( val )
-        return false if !@var_args[ :nil_value ]
+        return false if !@var_args.has_key?( :nil_value )
         val == @var_args[:nil_value]
     end
     
@@ -185,14 +185,11 @@ class GUIItem
         #3.  run converter if there is one found
 
         val = @gui_element.send( get_method )
-        if has_nil_value?( val )
-            @value = nil
-        else
-            @value = val
-            #run converter here if there is one.
-            send( convert_method ) if convert_method
-        end
+        @value = val
 
+        send( convert_method ) if convert_method
+
+        @value = nil if has_nil_value?( val )
         @value
     end
     

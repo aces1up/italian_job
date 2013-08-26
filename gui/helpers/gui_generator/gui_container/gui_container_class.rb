@@ -38,7 +38,7 @@ class GUIContainer
         @gui_elements.each do |var, var_args|
 
             #setup our initial_value if we have init_data
-            var_args[:value] = init_data[var] if init_data[var]
+            var_args[:value] = init_data[var] if init_data.has_key?(var)
 
             var_args[:var_name]        = var
             var_args[:focus_gained]    = focus_gained

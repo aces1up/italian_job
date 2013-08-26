@@ -44,6 +44,14 @@ module ElementTrainerData
                       :value           => :broad
                   },
 
+                  :use_xpath   =>
+                  {
+                      :value           => false,
+                      :root_pan        => :action_data_panel,
+                      :user_string     => "Use Xpath for Query? ",
+                      :render_klass    => :trueclass,
+                  },
+
                   :wait_mode =>
                   {
                       :root_pan        => :action_data_panel,
@@ -61,6 +69,14 @@ module ElementTrainerData
                       #initial value, min, max, step
                       :ele_args        => [ 1, 1, 30, 1 ],
                       :value           => 1
+                  },
+
+                  :raise_error   =>
+                  {
+                      :value           => true,
+                      :root_pan        => :action_data_panel,
+                      :user_string     => "Raise Error if Element not Found? ",
+                      :render_klass    => :trueclass,
                   }
 
               }.merge!( other_data )

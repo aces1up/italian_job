@@ -1,6 +1,6 @@
 class DashboardUiModel
 
-    include KillAllPhantom
+    include HardwareHelper
 
     attr_accessor :test_runner, :action_table_model, :action_list_combo
     attr_accessor :profile_list_combo, :file_list_combo, :proxy_table_model
@@ -68,7 +68,10 @@ class DashboardUiModel
               save_file = get_save_file_from_chooser( directory ) if !overwrite
         end
 
-        save_file.gsub('\\', '/').downcase if save_file
+        if ( save_file and save_file.include?('\\') )
+           save_file.gsub!('\\', '/').downcase
+        end
+
         save_file
 
     end

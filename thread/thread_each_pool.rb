@@ -85,7 +85,6 @@
           @job_data    = job_data
           setup_store( store ) if store
 
-
           init_jobs( num_jobs )
           init_workers()
           join()
