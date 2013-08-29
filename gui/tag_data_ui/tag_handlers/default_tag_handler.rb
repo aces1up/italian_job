@@ -45,9 +45,27 @@ class TagHandler
                         :pan_x          => 400,
                         :pan_y          => 30,
                         :render_klass   => :trueclass,
+                  },
+
+            :url_encode  =>
+                 {
+                        :value          => false,
+                        :nil_value      => false,
+                        :user_string    => 'URL Encode: ',
+                        :pan_x          => 400,
+                        :pan_y          => 30,
+                        :render_klass   => :trueclass,
+                  },
+
+            :cgi_encode  =>
+                 {
+                        :value          => false,
+                        :nil_value      => false,
+                        :user_string    => 'CGI Encode: ',
+                        :pan_x          => 400,
+                        :pan_y          => 30,
+                        :render_klass   => :trueclass,
                   }
-
-
 
         }
 

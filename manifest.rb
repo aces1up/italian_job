@@ -1,29 +1,35 @@
-Dir.glob(File.expand_path(File.dirname(__FILE__) + "/**/*").gsub('%20', ' ')).each do |directory|
-  # File.directory? is broken in current JRuby for dirs inside jars
-  # http://jira.codehaus.org/browse/JRUBY-2289
-  $LOAD_PATH << directory unless directory =~ /\.\w+$/
-end
-# Some JRuby $LOAD_PATH path bugs to check if you're having trouble:
-# http://jira.codehaus.org/browse/JRUBY-2518 - Dir.glob and Dir[] doesn't work
-#                                              for starting in a dir in a jar
-#                                              (such as Active-Record migrations)
-# http://jira.codehaus.org/browse/JRUBY-3247 - Compiled Ruby classes produce
-#                                              word substitutes for characters
-#                                              like - and . (to minus and dot).
-#                                              This is problematic with gems
-#                                              like ActiveSupport and Prawn
 
-#===============================================================================
-# Monkeybars requires, this pulls in the requisite libraries needed for
-# Monkeybars to operate.
+puts "Processing Manifest"
 
 require 'resolver'
 
-puts "Run Location: #{Monkeybars::Resolver.run_location.inspect}"
+module Kernel
+#this Hooks our require to ignore requires from .jar
+#as these should already be embedded in the jar if running
+#from web_start or jar.exe
+
+	alias_method :old_require_manifest, :require
+
+	def require( path, *args )
+
+		case Monkeybars::Resolver.run_location.to_s
+			when 'in_web_start'
+				if File.extname( path ) != '.jar'
+					old_require_manifest( path, *args )
+				end
+ 		else
+      #puts "requiring path : #{path}"
+			old_require_manifest( path, *args )
+		end
+	end
+
+end
+
+puts "Finished Resolver.. Run Location: #{Monkeybars::Resolver.run_location.inspect}"
 
 case Monkeybars::Resolver.run_location
 when Monkeybars::Resolver::IN_FILE_SYSTEM
-  add_to_classpath '../lib/java/monkeybars-1.0.4.jar'
+	add_to_classpath '../lib/java/monkeybars-1.0.4.jar'
 end
 
 def do_monkeybars_require()
@@ -32,72 +38,76 @@ def do_monkeybars_require()
     require 'application_view'
 end
 
-# End of Monkeybars requires
-#===============================================================================
-#
-# Add your own application-wide libraries below.  To include jars, append to
-# $CLASSPATH, or use add_to_classpath, for example:
-# 
-# $CLASSPATH << File.expand_path(File.dirname(__FILE__) + "/../lib/java/swing-layout-1.0.3.jar")
-#
-# is equivalent to
-#
-# add_to_classpath "../lib/java/swing-layout-1.0.3.jar"
-#
-# There is also a helper for adding to your load path and avoiding issues with file: being
-# appended to the load path (useful for JRuby libs that need your jar directory on
-# the load path).
-#
-# add_to_load_path "../lib/java"
-#
+def gem_list()
+	[
+	    #monkeybars
+	    'monkeybars-1.0.5',
 
-def do_in_file_system
-  # Files to be added only when running from the file system go here
-
-  #Watir WebDriver Load Paths
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/watir-webdriver-0.6.4/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/selenium-webdriver-2.33.0/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/childprocess-0.3.9/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/multi_json-1.3.6/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/multi_json-1.3.6/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/rubyzip-0.9.9/lib'
+      #watir webdriver
+      'watir-webdriver-0.6.4',
+      'selenium-webdriver-2.33.0',
+      'childprocess-0.3.9',
+      'multi_json-1.3.6',
+      'rubyzip-0.9.9',
 
 
-  #our Jruby-openssl Hopefully compatible with
-  #latest jruby_complete Version
-  #$LOAD_PATH << 'C:/jruby-gem-repository/gems/jruby-openssl-0.8.8/lib/shared'
+      #easy Rider
+      'C:/Ruby Code/easy_rider-1.0.0/lib',
 
-  #MECHANIZE REQUIRES
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/nokogiri-1.5.0-java/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/net-http-persistent-2.8/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/domain_name/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/mechanize-2.5.1/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/multipart_body/lib'
-  $LOAD_PATH << 'c:/jruby-gem-repository/gems/net-http-digest_auth-1.1.1/lib'
-  $LOAD_PATH << 'c:/jruby-gem-repository/gems/addressable-2.2.6/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/mime-types-1.18/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/unf-0.0.5-java/lib'
-  $LOAD_PATH << 'c:/jruby-gem-repository/gems/ntlm-http-0.1.1/lib'
-  $LOAD_PATH << 'c:/jruby-gem-repository/gems/webrobots/lib'
+      #bot framework load path
+      'C:/Ruby Code/bot_framework_gem/lib',
 
-  #easy Rider
-  #$LOAD_PATH << 'C:/jruby-gem-repository/gems/easyrider-0.0.1/lib'
-  $LOAD_PATH << 'C:/Ruby Code/easy_rider-1.0.0/lib'
+	    #mechanize gems
+	    'net-http-digest_auth-1.4',
+	    'net-http-persistent-2.9',
+	    'mime-types-1.24',
+	    'unf-0.1.2-java',
+	    'domain_name-0.5.12',
+	    'http-cookie-1.0.1',
+	    'mini_portile-0.5.1',
+	    'nokogiri-1.6.0-java',
+	    'ntlm-http-0.1.1',
+	    'webrobots-0.1.1',
+	    'mechanize-2.7.2',
+      #'multipart_body',
+      'addressable-2.2.6',
+         
+      #Thread Safe
+      'thread_safe-0.0.3',
 
-  #bot framework load path
-  $LOAD_PATH << 'C:/Ruby Code/bot_framework_gem/lib'
+      #our mail
+      'mail-2.5.4',
+      'treetop-1.4.12'
+     
+	 ]
 
-  #Thread Safe
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/thread_safe-0.0.3/lib'
-
-  #our mail
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/mail-2.5.4/lib'
-  $LOAD_PATH << 'C:/jruby-gem-repository/gems/treetop-1.4.12/lib'
 end
 
 
-case Monkeybars::Resolver.run_location
+def do_in_file_system()
+    # Files to be added only when running from the file system go here
+    #SET UP OUR LOAD PATHS
 
+	  puts "Doing Load Path from File System..."
+
+	  gem_home = 'c:/jruby-gem-repository/gems/'
+	  gem_list.each do |gem_name|
+
+      case
+          when gem_name.include?('Ruby Code')
+            $LOAD_PATH << gem_name
+      else
+     			$LOAD_PATH << "#{gem_home}#{gem_name}/lib"
+      end
+
+	  end
+
+    #puts "[] -- Load Paths:"
+    #$LOAD_PATH.each do |path| puts path end
+
+end
+
+case Monkeybars::Resolver.run_location
     when Monkeybars::Resolver::IN_FILE_SYSTEM
       do_monkeybars_require()
       do_in_file_system()
@@ -110,12 +120,20 @@ case Monkeybars::Resolver.run_location
 
     when Monkeybars::Resolver::IN_WEB_START
       # Files to be added only when run from inside java web_start
-      puts "Processing WebStart Manifest"
+      puts "Processing WebStart Manifest Start"
       do_monkeybars_require
 
+	    gem_list.each do |gem_name|
+          if gem_name.include?('Ruby Code')
+              $LOAD_PATH << gem_name.split('/')[-2]
+          else
+              $LOAD_PATH << gem_name 
+          end
+      end
 
-      #hardware stuff\
-      #$LOAD_PATH << "#{$working_directory}dependancies/jruby-win32ole-0.8.3/lib"
-      #POlterGeist
-      #$LOAD_PATH << "#{$working_directory}dependancies/poltergeist-1.7.0/lib"
+	    puts "Processing Webstart Manifest Finished..."
 end
+
+
+
+

@@ -35,8 +35,8 @@ end
 
   $working_directory = 'c:/lwb-trainer/'
   $display_gui       = true
-  Version            = 'Italian Job 1.0.6'
-  STOUT_To_File      = true
+  Version            = 'Italian Job 1.0.7'
+  STOUT_To_File      = false
 
   FileUtils.mkdir( $working_directory ) if !File.directory?( $working_directory )
   init_output_format()
@@ -107,7 +107,7 @@ begin
   require 'gui/splash_ui/splash_ui_model'
   require 'gui/splash_ui/splash_ui_view'
 
-  DownloaderLogHandler = SplashUiController.instance
+  $boot_log_handler = SplashUiController.instance
   SplashUiController.instance.open
 
   SplashUiController.instance.update_msg('Loading Bot FrameWork..')

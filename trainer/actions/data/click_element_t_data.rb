@@ -16,7 +16,16 @@ class ClickElementTrainer < TrainerAction
                       :value           => 0,
                       :nil_value       => 0
 
-                  }
+                  },
+
+                  :click_method =>
+                  {
+                      :root_pan        => :action_data_panel,
+                      :user_string     => "Select Click Method: ",
+                      :render_klass    => :symbolselect,
+                      :ele_args        => [ :native, :js_click ],
+                      :value           =>  :native
+                  },
         }
         super( data )
         end

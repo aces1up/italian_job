@@ -32,7 +32,9 @@ TagList = [
     :random_line_from_file,
     
     #cookie Handling 
-    :cookie_string
+    :cookie_string,
+
+    :conn_url
 
 ]
 

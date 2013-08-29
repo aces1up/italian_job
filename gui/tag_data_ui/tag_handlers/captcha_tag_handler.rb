@@ -12,15 +12,24 @@ class CaptchaTagHandler < TagHandler
                        :pan_y           => 35,
                        :render_klass    => :trueclass,
                   },
-=begin
+
             :is_recaptcha =>
                   {
-                  :value => false,
-                  :user_string => 'Is ReCaptcha Image?',
-                  :pan_x => 300, :pan_y => 35,
-                  :render_klass => TrueClass,
+                        :value       => false,
+                        :user_string => 'Is ReCaptcha Image?',
+                        :pan_x       => 400, :pan_y => 35,
+                        :render_klass => :trueclass,
                   },
-=end
+
+            :public_key  =>
+                  {
+                      :value         => nil,
+                      :nil_value     => '',
+                      :user_string   => 'Recaptcha Public Key( Optional )',
+                      :pan_x         => 400, :pan_y => 55,
+                      :render_klass  => :string,
+                  },
+
             :use_url =>
                   {
                         :value          => nil,

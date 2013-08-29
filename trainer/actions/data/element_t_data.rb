@@ -52,6 +52,25 @@ module ElementTrainerData
                       :render_klass    => :trueclass,
                   },
 
+                  :find_invisible =>
+                   {
+                      :value           => false,
+                      :root_pan        => :action_data_panel,
+                      :user_string     => "Include Invisible Elements? ",
+                      :render_klass    => :trueclass,
+                  },
+
+                  :ele_index   =>
+                  {
+                      :root_pan        => :action_data_panel,
+                      :user_string     => "Use Specific Element Index: ",
+                      :render_klass    => :integer,
+                      #initial value, min, max, step
+                      :ele_args        => [ -1, -1, 10, 1 ],
+                      :value           => nil,
+                      :nil_value       => -1
+                  },
+
                   :wait_mode =>
                   {
                       :root_pan        => :action_data_panel,
